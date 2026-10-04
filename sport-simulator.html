@@ -3,220 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SPORT SIMULATOR.DZ — محاكي القرارات الرياضية</title>
-<meta name="description" content="SPORT SIMULATOR.DZ — محاكي القرارات الرياضية وتدريب اتخاذ القرار للحراس واللاعبين من تطوير بن عبدالله الهواري.">
+<title>SPORT SIMULATOR.DZ — محاكي القرارات الرياضية (FIFA Pro Edition)</title>
+<meta name="description" content="SPORT SIMULATOR.DZ — محاكي القرارات الرياضية ببطاقات FUT، التوجيه الصوتي، وقياس رد الفعل بالمللي ثانية.">
 <meta name="theme-color" content="#0b7a45">
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f6f2;--card:#fff;--tx:#10201a;--mut:#5b6b63;--gr:#0b7a45;--go:#a87708;--bd:#d6dfd8;--rd:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#09120d;--card:#12211a;--tx:#f1f5f2;--mut:#9db0a5;--gr:#2ecc71;--go:#e8bd3a;--bd:#23382c;--rd:#ff6b5b}}
-:root[data-theme="dark"]{--bg:#09120d;--card:#12211a;--tx:#f1f5f2;--mut:#9db0a5;--gr:#2ecc71;--go:#e8bd3a;--bd:#23382c;--rd:#ff6b5b}
+:root{--bg:#070e17;--card:#0f172a;--tx:#f1f5f2;--mut:#94a3b8;--gr:#10b981;--go:#f59e0b;--bd:#1e293b;--rd:#ef4444;--fifa-gold:linear-gradient(135deg, #f59e0b 0%, #d97706 100%);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:'Cairo',system-ui,sans-serif;line-height:1.7;min-height:100%}
-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 16px;border-bottom:2px solid var(--go);background:var(--card)}
-.logo{font-weight:800;letter-spacing:.5px;cursor:pointer;direction:ltr}
-.fl{font-size:.7em;vertical-align:middle}
-nav button,.lk{background:none;border:0;color:var(--mut);font:inherit;font-size:.9rem;cursor:pointer;padding:4px 8px}
-main{max-width:760px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 20px;border-bottom:3px solid var(--go);background:var(--card);box-shadow:0 4px 15px rgba(0,0,0,0.6)}
+.logo{font-weight:900;letter-spacing:.5px;cursor:pointer;direction:ltr;color:#fff;font-size:1.1rem}
+.fl{font-size:.8em;vertical-align:middle}
+nav button,.lk{background:none;border:0;color:var(--mut);font:inherit;font-size:.9rem;cursor:pointer;padding:4px 8px;font-weight:700}
+nav button:hover,.lk:hover{color:var(--go)}
+main{max-width:800px;margin:0 auto;padding:16px}
 h1{font-size:1.9rem;margin:8px 0 0;direction:ltr;text-align:center}
-h2{margin:18px 0 8px}h3{margin:0 0 6px}
-.sub{text-align:center;color:var(--gr);font-weight:700;font-size:1.15rem;margin:0}
-.slg{text-align:center;color:var(--go);font-weight:700;margin:12px 0 4px}
+h2{margin:18px 0 8px;color:#fff}h3{margin:0 0 6px}
+.sub{text-align:center;color:var(--gr);font-weight:800;font-size:1.15rem;margin:0}
+.slg{text-align:center;color:var(--go);font-weight:800;margin:12px 0 4px}
 .grid{display:grid;gap:12px}.g2{grid-template-columns:1fr 1fr}
 @media(max-width:560px){.g2{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:10px 0}
-.pick{cursor:pointer;border-top:4px solid var(--gr);margin:0}
-.pick:hover{border-top-color:var(--go)}
+
+/* FIFA Ultimate Team Card Style */
+.fut-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid var(--go);
+  border-radius: 16px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.fut-rating {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--go);
+  line-height: 1;
+}
+.fut-pos { font-size: 0.8rem; font-weight: 800; color: var(--mut); }
+.fut-info { flex: 1; }
+
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:10px 0;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.pick{cursor:pointer;border-top:4px solid var(--gr);margin:0;transition:transform 0.2s}
+.pick:hover{transform:translateY(-3px);border-top-color:var(--go)}
 .ic{font-size:2.4rem}
 .pick p{color:var(--mut);font-size:.9rem;margin:6px 0 10px}
-.b,.opt,.ch{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--gr);padding:10px 16px;background:var(--gr);color:#fff;font-weight:700}
-:root[data-theme="dark"] .b{color:#06140c}
-.opt{width:100%;text-align:right;background:var(--card);color:var(--tx);border-color:var(--bd);font-weight:600}
-.opt:hover,.ch:hover{border-color:var(--go)}
-.ch{background:var(--card);color:var(--tx);border-color:var(--bd);font-weight:600}
+.b,.opt,.ch{font:inherit;cursor:pointer;border-radius:12px;border:1px solid var(--gr);padding:12px 20px;background:var(--gr);color:#000;font-weight:900;box-shadow:0 4px 15px rgba(16,185,129,0.3)}
+.b{color:#000;background:var(--fifa-gold);border:none}
+.opt{width:100%;text-align:right;background:var(--card);color:var(--tx);border-color:var(--bd);font-weight:700}
+.opt:hover,.ch:hover{border-color:var(--go);background:rgba(245,158,11,0.1)}
+.ch{background:var(--card);color:var(--tx);border-color:var(--bd);font-weight:700}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
 .soon{text-align:center;color:var(--mut);border:1px dashed var(--bd);border-radius:12px;padding:12px;margin-top:14px}
-svg.pt{width:100%;height:auto;border-radius:10px;display:block;margin:8px 0}
+svg.pt{width:100%;height:auto;border-radius:12px;display:block;margin:8px 0;box-shadow:inset 0 0 20px rgba(0,0,0,0.5)}
 .en{will-change:transform}
-.bar{height:9px;background:var(--bd);border-radius:6px;overflow:hidden;margin:4px 0}.bar i{display:block;height:100%;background:var(--gr)}
-.tc{text-align:center;font-size:2rem;font-weight:800;color:var(--go);margin:2px 0 8px}
+.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden;margin:6px 0}.bar i{display:block;height:100%;background:var(--gr)}
+.tc{text-align:center;font-size:2rem;font-weight:900;color:var(--go);margin:2px 0 8px}
 .mt{color:var(--mut);font-size:.85rem}
-.ob{font-size:1.3rem;font-weight:800;text-align:center;padding:10px;border-radius:10px;border:2px solid var(--bd)}
-.n3{border-color:var(--gr)}.n2{border-color:var(--go)}.n0{border-color:var(--rd)}
-.row{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--bd)}
+.ob{font-size:1.3rem;font-weight:900;text-align:center;padding:12px;border-radius:12px;border:2px solid var(--bd)}
+.n3{border-color:var(--gr);background:rgba(16,185,129,0.1)}.n2{border-color:var(--go);background:rgba(245,158,11,0.1)}.n0{border-color:var(--rd);background:rgba(239,68,68,0.1)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--bd)}
 .lg{font-size:.8rem;color:var(--mut);text-align:center}
 footer{text-align:center;color:var(--mut);font-size:.85rem;padding:20px 16px 28px;border-top:1px solid var(--bd);margin-top:24px}
 footer b{color:var(--tx);direction:ltr;display:inline-block}
 button:focus-visible{outline:3px solid var(--go);outline-offset:2px}
-label{display:block;margin-top:8px;color:var(--mut);font-size:.9rem}select,input,textarea{font:inherit;width:100%;padding:8px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);margin:4px 0}
+label{display:block;margin-top:8px;color:var(--mut);font-size:.9rem}select,input,textarea{font:inherit;width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);margin:4px 0}
 </style>
 </head>
 <body>
-<header><span class="logo" onclick="home()"><span class="fl">🇩🇿</span> SPORT SIMULATOR.DZ</span><nav><button onclick="perf()">📊 أدائي</button><button onclick="about()">About</button><a class="lk" href="index.html">← متجر التطبيقات</a></nav></header>
+<header>
+  <span class="logo" onclick="home()"><span class="fl">🇩🇿</span> EA SPORTS · SPORT SIMULATOR</span>
+  <nav><button onclick="perf()">📊 أدائي FUT</button><button onclick="about()">About</button><a class="lk" href="index.html">← المتجر</a></nav>
+</header>
 <main id="app"></main>
 <footer><b><span class="fl">🇩🇿</span> SPORT SIMULATOR.DZ</b><br>فكرة وتطوير:<br>المربي الرياضي ومدرب الحراس بن عبد الله الهواري</footer>
 <script>
-const L={ar:{sub:'محاكي القرارات الرياضية',slogan:'لا تتدرب فقط على المهارة... تدرب على القرار.',path:'اختر مسارك',start:'ابدأ التدريب',soon:'🚀 قريبًا',soonT:'المزيد من الرياضات والمراكز الرياضية.',age:'اختر الفئة العمرية',lvl:'اختر المستوى',mode:'اختر نوع التدريب'}};
+const L={ar:{sub:'محاكي القرارات الرياضية (FIFA Pro)',slogan:'تدرب على القرار السريع بأسلوب FUT والمحترفين.',path:'اختر مسارك',start:'ابدأ التدريب ⚽'}};
 const t=k=>L.ar[k]||k;
 const $=s=>document.querySelector(s);
 const rnd=(a,b)=>Math.floor(a+Math.random()*(b-a+1));
-const SP=['','بطيئة','متوسطة','سريعة'],PR=['','منخفض','متوسط','عالٍ'];
+const SP=['','بطيئة 🐢','متوسطة ⚡','سريعة 🚀'],PR=['','منخفض 🟢','متوسط 🟡','عالٍ 🔴'];
 
 const G=[
-{id:'g1',n:'الانفراد',sk:'غلق الزاوية والمواجهة الفردية',tip:'قرار الخروج تحسمه المسافة والزمن، لا الجرأة وحدها.',
+{id:'g1',n:'الانفراد الصريح',sk:'غلق الزاوية والمواجهة الفردية',tip:'قرار الخروج تحسمه المسافة والزمن بدقة.',
  gen:()=>({d:rnd(8,22),s:rnd(1,3),pr:2}),txt:p=>`مهاجم منفرد يبعد ${p.d} م عنك، وسرعته ${SP[p.s]}.`,
  init:p=>{const o=[95-p.d,30];return{me:[95,32],opp:o,ball:[o[0]+2,30]}},od:[6,1],
- O:[['التقدم نحو الكرة',p=>p.d<=14?3:p.d<=18?2:1,.5,'التقدم من مسافة بعيدة يترك مساحة خلفك ويمنح المهاجم وقتًا لرفع الكرة.','المسافة مناسبة لتقليص الزاوية قبل أن يسدد المهاجم.'],
- ['غلق الزاوية',p=>p.d>=12&&p.d<=19?3:2,.3,'غلق الزاوية وحده لم يكن كافيًا لهذه المسافة.','التقدم الجزئي مع وضعية جاهزة يقلص الزاوية دون مخاطرة كبيرة.'],
- ['البقاء على الخط',p=>p.d>18?2:p.d>14?1:0,0,'البقاء ثابتًا يمنح المهاجم زاوية المرمى كاملة.','المهاجم بعيد، فالبقاء مقبول لكنه سلبي.'],
- ['الانتظار',p=>p.d>20?1:0,.1,'الانتظار يضيع الزمن الذي تحتاجه لتحسين موقعك.','انتظار قصير مقبول عند المسافات الكبيرة جدًا.'],
- ['المواجهة السريعة',p=>p.d<=10?3:p.d<=13?2:0,.8,'الاندفاع من بعيد يعرضك للمراوغة أو الكرة المرفوعة.','المهاجم قريب جدًا، والمواجهة تقلص زمنه وزاويته.']]},
-{id:'g2',n:'تسديدة أرضية',sk:'الوضعية المنخفضة والكرات الأرضية',tip:'سرعة الكرة تحدد: هل تمسك الكرة أم تبعدها؟',
- gen:()=>({d:rnd(10,25),s:rnd(1,3),pr:1}),txt:p=>`تسديدة أرضية من ${p.d} م وسرعتها ${SP[p.s]} نحو الزاوية.`,
+ O:[['التقدم نحو الكرة وتقليص الزاوية',p=>p.d<=14?3:p.d<=18?2:1,.5,'التقدم من مسافة بعيدة يترك مساحة خلفك.','المسافة مناسبة لتقليص الزاوية قبل التسديد.'],
+ ['غلق الزاوية بثبات',p=>p.d>=12&&p.d<=19?3:2,.3,'غلق الزاوية وحده لم يكن كافيًا لهذه المسافة.','التقدم الجزئي مع وضعية جاهزة يقلص الزاوية بدقة.'],
+ ['البقاء على خط المرمى',p=>p.d>18?2:p.d>14?1:0,0,'البقاء ثابتًا يمنح المهاجم زاوية المرمى كاملة.','المهاجم بعيد، فالصمود مقبول.'],
+ ['المواجهة السريعة بالقفازات',p=>p.d<=10?3:p.d<=13?2:0,.8,'الاندفاع من بعيد يعرضك للمراوغة.','المهاجم قريب جداً، المواجهة تقلص زمنه وزاويته.']]},
+{id:'g11',n:'ركلة جزاء حاسمة',sk:'توقيت وقراءة مسدد ركلة الجزاء',tip:'في ركلات الجزاء، انتظر حركة قدم المسدد الأخيرة.',
+ gen:()=>({d:11,s:3,pr:3}),txt:p=>`ركلة جزاء حاسمة في الدقيقة 90! المسدد يستعد للتسديد.`,
+ init:p=>({me:[97,32],opp:[96,32],ball:[95,32]}),od:[1,0],
+ O:[['اختيار الزاوية اليمنى مبكراً',()=>1,.5,'القفز المبكر يترك الزاوية الأخرى مكشوفة تماماً.',''],
+ ['الثبات بمنتصف المرمى حتى لحظة التسديد',()=>3,0,'','البقاء بالمنتصف يمنحك فرصة تغطية الزاويتين برد فعل.',[97,32]],
+ ['التحرك يميناً ويساراً لتشتيت المسدد',()=>2,.2,'','التمويه قد يربك المسدد أحياناً.','']]},
+{id:'g12',n:'ركلة حرة مباشرة',sk:'التمركز مع الحائط البشري',tip:'احمِ القائم البعيد ودع الحائط يغطي القريب.',
+ gen:()=>({d:rnd(18,25),s:3,pr:2}),txt:p=>`ركلة حرة مباشرة على خط منطقة الجزاء أمام حائط من 4 لاعبين.`,
+ init:p=>({me:[97,32],opp:[80,24],ball:[79,24]}),od:[1,0],
+ O:[['التمركز خلف الحائط مباشرة',()=>1,0,'التمركز خلف الحائط يغطي القريب لكنه يحجب رؤيتك.',''],
+ ['التمركز بمنتصف المرمى لرؤية الكرة',()=>3,0,'','رؤية انطلاق الكرة تمنحك ثانية إضافية للتصدي.'],
+ ['التركيز على القائم البعيد فقط',()=>2,0,'','الحائط يغطي القريب فتحمي البعيد بذكاء.','']]},
+{id:'g2',n:'تسديدة أرضية قوية',sk:'الوضعية المنخفضة والكرات الأرضية',tip:'سرعة الكرة تحدد المسك أو الإبعاد.',
+ gen:()=>({d:rnd(10,25),s:rnd(1,3),pr:1}),txt:p=>`تسديدة أرضية من ${p.d} م وسرعتها ${SP[p.s]}.`,
  init:p=>({me:[97,32],opp:[98-p.d,20],ball:[100-p.d,20]}),od:[2,0],
- O:[['وضعية منخفضة ومسك الكرة',p=>p.s<3?3:1,.55,'الكرة سريعة، ومسكها يزيد خطر الارتداد أمام المهاجم.','سرعة الكرة تسمح بالوصول إليها ومسكها بأمان.'],
- ['إبعاد الكرة بعيدًا عن المرمى',p=>p.s==3?3:2,.55,'','الإبعاد أأمن حين تكون الكرة سريعة.'],
- ['السقوط والغوص',p=>p.d>18||p.s==3?2:1,.75,'السقوط المبكر يقلل تحكمك بالكرة.','الغوص يغطي مسار الكرة البعيد.'],
- ['الثبات دون حركة',()=>0,0,'عدم الحركة لا يغطي مسار الكرة.','']]},
-{id:'g3',n:'عرضية',sk:'العرضيات والكرات العالية',tip:'كلما زاد الازدحام ابتعد عن الالتقاط واقترب من الإبعاد الآمن.',
- gen:()=>({d:rnd(14,28),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`عرضية عالية من الجناح، ويتواجد ${p.pr} من المهاجمين في منطقة الجزاء.`,
+ O:[['الوضع المنخفض والامساك بالكرة',p=>p.s<3?3:1,.55,'الكرة سريعة ومسكها قد يرتد للمهاجم.','السرعة تسمح بالمسك الآمن.'],
+ ['إبعاد الكرة بعيدًا عن المرمى',p=>p.s==3?3:2,.55,'','الإبعاد أأمن حين تكون الكرة صاروخية.'],
+ ['السقوط والغوص السريع',p=>p.d>18||p.s==3?2:1,.75,'السقوط المبكر يقلل تحكمك.','الغوص يغطي مسار الكرة البعيد.'],
+ ['الثبات دون حركة',()=>0,0,'عدم الحركة يترك المرمى مكشوفاً.','']]},
+{id:'g3',n:'عرضية عالية',sk:'الكرات العالية والقبضة',tip:'الازدحام يحدد: التقاط بالكفين أم إبعاد بالقبضة.',
+ gen:()=>({d:rnd(14,28),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`عرضية عالية، ويتواجد ${p.pr} مهاجمين بمنطقة الجزاء.`,
  init:p=>({me:[97,32],opp:[90,30],ball:[88,6]}),od:[-1,0],
- O:[['الخروج والتقاط الكرة',p=>p.pr==1?(p.d<=22?3:2):p.pr==2?1:0,.6,'الازدحام يجعل الالتقاط مخاطرة كبيرة.','قلة المنافسين تسمح بالخروج والالتقاط.'],
- ['الخروج وإبعاد بالقبضة',p=>p.pr>=2?3:2,.6,'القبضة أقل ملاءمة هنا، فالالتقاط ممكن.','مع الازدحام تعد القبضة الخيار الأأمن.'],
- ['البقاء على خط المرمى',p=>p.pr==3?1:0,0,'البقاء يترك الكرة العالية للمهاجمين.',''],
- ['التمركز وانتظار الكرة الثانية',p=>p.pr==3?2:1,.15,'انتظار الكرة الثانية يتخلى عن الكرة الأولى.','تحت ازدحام عالٍ يمنحك التمركز توازنًا للكرة الثانية.']]},
-{id:'g4',n:'كرة خلف الدفاع',sk:'اللعب بالقدم وغلق المساحة',tip:'اقرأ سرعة المهاجم قبل أن تقرر الخروج.',
- gen:()=>({d:rnd(12,30),s:rnd(1,3),pr:2}),txt:p=>`كرة طويلة خلف الدفاع تبعد ${p.d} م، والمهاجم ${SP[p.s]}.`,
- init:p=>({me:[96,32],opp:[93-p.d,24],ball:[95-p.d,22]}),od:[8,2],
- O:[['الخروج وإبعاد الكرة',p=>p.s<3&&p.d<=22?3:p.d<=15?2:0,.8,'وصولك سيكون متأخرًا وقد ينفرد المهاجم.','الخروج في الوقت المناسب يسبق المهاجم إلى الكرة.'],
- ['غلق المساحة بتقدم جزئي',p=>p.d>16?3:2,.4,'التقدم الجزئي أقل فائدة مع قرب الكرة.','تقليص المساحة تدريجيًا يجهزك للانفراد.'],
- ['البقاء على الخط',p=>p.d>26?2:0,0,'البقاء يمنح المهاجم المساحة كاملة.','الكرة بعيدة جدًا، فالبقاء مقبول.'],
- ['الاستعداد للانفراد',p=>p.s==1?2:1,.15,'الانتظار فقط يترك المبادرة للمهاجم.','المهاجم بطيء فيمكنك الاستعداد.']]},
-{id:'g5',n:'تسديدة قريبة',sk:'رد الفعل والتمركز',tip:'من مسافة قريبة يتقدم رد الفعل على قراءة المسار.',
- gen:()=>({d:rnd(5,12),s:rnd(2,3),pr:2}),txt:p=>`تسديدة من مسافة قريبة (${p.d} م) وسرعتها ${SP[p.s]}.`,
- init:p=>({me:[97,32],opp:[98-p.d,26],ball:[99-p.d,26]}),od:[2,0],
- O:[['تقليص الزاوية والثبات',p=>p.d>=8?3:2,.35,'الثبات وحده لا يكفي من مسافة قصيرة جدًا.','المسافة تسمح بتقليص الزاوية والثبات للتصدي.'],
- ['الغوص برد فعل سريع',p=>p.d<8?3:2,.7,'الغوص المبكر يمنح المهاجم زاوية للتسديد.','الزمن قصير فرد الفعل السريع هو الأنسب.'],
- ['الخروج للتضييق',p=>p.d>=9?2:1,.6,'الخروج من مسافة قريبة قد يكشف المرمى.','الخروج يضيق الزاوية دون مخاطرة كبيرة.'],
- ['الانتظار على الخط',()=>1,0,'الانتظار يضيع فرصة تقليص الزاوية.','']]},
-{id:'g6',n:'كرة عالية',sk:'الكرات العالية',tip:'الازدحام يحدد: التقاط بالكفين أم قبضة.',
- gen:()=>({d:rnd(10,25),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`كرة عالية على بعد ${p.d} م، ويحيط بك ${p.pr} من المهاجمين.`,
- init:p=>({me:[97,32],opp:[91,28],ball:[100-p.d,16]}),od:[2,2],
- O:[['الخروج والتقاط الكرة بالكفين',p=>p.pr==1?3:p.pr==2?1:0,.6,'الالتقاط مخاطرة مع وجود منافسين.','لا ضغط عليك، فالالتقاط آمن.'],
- ['الخروج وإبعاد الكرة بالقبضة',p=>p.pr>=2?3:2,.6,'','مع الازدحام تحمي القبضة مرماك.'],
+ O:[['الخروج والتقاط الكرة بالكفين',p=>p.pr==1?(p.d<=22?3:2):0,.6,'الازدحام يجعل الالتقاط مخاطرة كبيرة.','قلة المنافسين تسمح بالالتقاط.'],
+ ['الخروج وإبعاد بالقبضة الآمنة',p=>p.pr>=2?3:2,.6,'القبضة أقل ملاءمة لوحدك.','مع الازدحام تعد القبضة الخيار الأأمن.'],
  ['البقاء على خط المرمى',p=>p.pr==3?1:0,0,'البقاء يترك الكرة للمهاجمين.',''],
- ['الخروج المتأخر',p=>p.pr==3?0:1,.4,'التأخر يضيع نقطة الالتقاء.','']]},
-{id:'g7',n:'كرة مرتدة',sk:'الكرة الثانية',tip:'بعد التصدي الأول يبدأ قرار جديد فورًا.',
- gen:()=>({d:rnd(3,10),s:rnd(1,3),pr:rnd(1,2)}),txt:p=>`ارتدت الكرة بعد تصديك على بعد ${p.d} م، والمهاجم ${SP[p.s]}.`,
- init:p=>({me:[96,36],opp:[92-p.d,28],ball:[96-p.d,30]}),od:[5,1],
- O:[['الارتماء على الكرة وحجزها',p=>p.d<=5?3:2,.8,'الكرة بعيدة فالارتماء قد يتأخر.','الكرة قريبة ويمكن حجزها قبل المهاجم.'],
- ['إبعاد الكرة بسرعة',p=>p.s==3?3:2,.7,'','المهاجم سريع فالإبعاد الفوري أأمن.'],
- ['النهوض والتمركز',p=>p.d>7?3:1,.25,'التمركز فقط يترك الكرة للمهاجم.','الكرة بعيدة فالنهوض والتمركز يغلقان الزاوية.'],
- ['البقاء على الأرض',()=>0,0,'البقاء على الأرض يخرجك من اللعب.','']]},
-{id:'g8',n:'تسديدة مفاجئة',sk:'رد الفعل والوضعية الأساسية',tip:'الوضعية الأساسية الجاهزة تسبق رد الفعل.',
- gen:()=>({d:rnd(10,22),s:3,pr:rnd(1,3)}),txt:p=>`تسديدة مفاجئة من ${p.d} م خلف ازدحام، وسرعتها ${SP[p.s]}.`,
- init:p=>({me:[97,32],opp:[98-p.d,36],ball:[99-p.d,36]}),od:[2,0],
- O:[['رد فعل سريع من وضعية جاهزة',p=>p.pr>=2?3:2,.5,'','الازدحام يحجب الرؤية فالجاهزية أهم.'],
- ['التحرك مبكرًا لتخمين الزاوية',()=>1,.7,'التخمين المبكر يفقدك التوازن.',''],
- ['الثبات في الوضعية الأساسية',p=>p.d>=14?3:2,.2,'','التوازن يمنحك ردة فعل أسرع.'],
- ['التراجع للخلف',()=>0,-.1,'التراجع يفتح الزاوية.','']]},
-{id:'g9',n:'كرة ثابتة',sk:'التمركز مع الحائط',tip:'مكان الحائط يحدد مكانك أنت.',
- gen:()=>({d:rnd(16,28),s:rnd(1,3),pr:2}),txt:p=>`ضربة حرة من ${p.d} م أمام حائط من ${p.s+1} لاعبين.`,
- init:p=>({me:[97,32],opp:[100-p.d,24],ball:[101-p.d,24]}),od:[1,0],
- O:[['ضبط الحائط والتمركز خلفه',p=>p.d<=24?3:2,.15,'','الحائط يغطي القائم القريب ويخفف مسؤوليتك.'],
- ['التمركز في منتصف المرمى',p=>p.d>24?3:1,0,'المنتصف يفتح القائم القريب.','المسافة بعيدة فالمنتصف يغطي الجانبين.'],
- ['التقدم خارج الخط',p=>p.d>26?2:0,.35,'التقدم يعرضك للتسديدة فوق رأسك.',''],
- ['التركيز على القائم البعيد',p=>p.s>=3?3:2,.1,'','الحائط الكبير يغطي القريب فتحمي البعيد.']]},
-{id:'g10',n:'موقف مركب',sk:'الكرة الثانية والتصدي المتتالي',tip:'عرضية ثم تصدٍّ ثم ارتداد: القرار الجديد يبدأ من الوضع الجديد.',
- gen:()=>({d:rnd(3,9),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`عرضية ثم تصدٍّ ثم ارتداد، ومهاجم ثانٍ على بعد ${p.d} م ومعه ${p.pr} مهاجمين.`,
- init:p=>({me:[95,38],opp:[93-p.d,30],ball:[95-p.d,34]}),od:[5,2],
- O:[['النهوض والتصدي للكرة الثانية',p=>p.d<=6?3:2,.7,'','الكرة قريبة فالنهوض السريع يسبق المهاجم.'],
- ['الارتماء على الكرة',p=>p.pr==1?3:1,.8,'الازدحام يجعل الارتماء مخاطرة.','لا ازدحام فالارتماء يحسمها.'],
- ['إبعاد الكرة للجانب',p=>p.pr>=2?3:2,.7,'','مع تعدد المهاجمين يكون الإبعاد الأأمن.'],
- ['البقاء على الأرض',()=>0,0,'البقاء على الأرض يلغي دورك.','']]
-];
-const P=[
-{id:'p1',n:'استلام تحت الضغط',sk:'الاستلام واللعب تحت الضغط',tip:'اقرأ مستوى الضغط قبل أن تستلم الكرة.',
+ ['التمركز وانتظار الكرة الثانية',p=>p.pr==3?2:1,.15,'انتظار الكرة الثانية يتخلى عن الأولى.','توازن جيد للكرة المرتدة.']]},
+{id:'p1',n:'استلام تحت الضغط العالي',sk:'الاستلام واللعب تحت الضغط',tip:'اقرأ مستوى الضغط قبل أن تستلم الكرة.',
  gen:()=>({d:rnd(1,6),s:2,pr:rnd(1,3)}),txt:p=>`تستلم الكرة وأنت مضغوط (${PR[p.pr]})، والمدافع على بعد ${p.d} م خلفك.`,
  init:p=>({me:[48,32],ball:[48,32],opp:[48-p.d,35],mate:[60,18],gk:[97,32]}),od:[3,-2],
- O:[['تمرير مباشر للزميل',p=>p.pr>=2?3:2,[0,0],'الضغط منخفض وكان الاحتفاظ أو الدوران أفضل لكسب المساحة.','مع ضغط مرتفع يخلصك التمرير المباشر من المدافع.','m'],
- ['الاحتفاظ بالكرة',p=>p.pr==1?3:p.pr==2?1:0,[0,0],'الاحتفاظ تحت ضغط مرتفع يعرضك لخسارة الكرة.','الضغط منخفض والكرة آمنة معك.','c'],
- ['الدوران بالكرة',p=>p.d>=4?3:p.d>=3?2:0,[6,-4],'المدافع قريب جدًا والدوران يكشف الكرة.','المسافة تسمح بالدوران وكسب المساحة.','c'],
- ['إعادة الكرة للخلف',p=>p.pr==3?3:2,[-2,0],'إعادة الكرة تبطئ الهجوم دون حاجة.','خيار آمن يحافظ على الاستحواذ.',[38,42]]]},
-{id:'p2',n:'تسديد أم تمرير',sk:'التسديد واختيار الحل',tip:'المسافة والضغط يحددان جودة الفرصة قبل أي شيء.',
- gen:()=>({d:rnd(12,30),s:2,pr:rnd(1,3)}),txt:p=>`أنت في الثلث الأخير على بعد ${p.d} م من المرمى، ومستوى الضغط ${PR[p.pr]}.`,
- init:p=>({me:[100-p.d,32],ball:[100-p.d,32],opp:[105-p.d,34],mate:[105-p.d,16],gk:[97,32]}),od:[-3,0],
- O:[['التسديد',p=>p.d<=18?3:p.d<=24?(p.pr<3?2:1):0,[3,0],'التسديد من بعيد أو تحت ضغط عالٍ يقلل جودة الفرصة.','المسافة والزاوية تسمحان بتسديدة جيدة.','g'],
- ['التمرير للزميل المتحرر',p=>p.d>20||p.pr==3?3:2,[0,0],'التمرير أقل ملاءمة هنا، فالفرصة متاحة للتسديد.','الزميل في موقع أفضل والتمرير يرفع جودة الفرصة.','m'],
- ['المراوغة',p=>p.pr==1?2:1,[6,-5],'المراوغة تحت ضغط متوسط أو عالٍ تخاطر بالكرة.','ضغط منخفض يسمح بتجاوز المدافع.','c'],
- ['الاحتفاظ بالكرة',p=>p.pr==1?1:0,[0,0],'الاحتفاظ يضيع لحظة الفرصة ويقرب المدافعين.','','c']]},
-{id:'p3',n:'1 ضد 1',sk:'المراوغة',tip:'المسافة من المدافع وسرعته تحددان نوع المراوغة.',
- gen:()=>({d:rnd(2,8),s:rnd(1,3),pr:2}),txt:p=>`مواجهة 1 ضد 1: المدافع على بعد ${p.d} م وسرعته ${SP[p.s]}.`,
- init:p=>({me:[56,32],ball:[56,32],opp:[56+p.d,32],mate:[72,14],gk:[97,32]}),od:[-3,0],
- O:[['المراوغة',p=>p.d<=4?(p.s<3?3:2):1,[12,5],'المراوغة من بعيد أو أمام مدافع سريع غير مناسبة.','المسافة قريبة والمدافع غير سريع.','c'],
- ['تغيير الاتجاه',p=>p.s==3?3:2,[8,-9],'','المدافع سريع، وتغيير الاتجاه يربكه.','c'],
- ['التسريع',p=>p.d>=5?3:p.s==1?2:1,[16,0],'التسريع أمام مدافع قريب وسريع يضعك في مواجهة مباشرة.','هناك مساحة كافية للتسريع.','c'],
- ['التمرير للزميل',p=>p.s==3?3:2,[0,0],'','مع مدافع سريع يكون التمرير حلًا ذكيًا.','m']]},
-{id:'p4',n:'التحول الدفاعي',sk:'التحول والتمركز',tip:'قرب المدافع من الكرة يحدد: هل تضغط أم تعود؟',
- gen:()=>({d:rnd(3,12),s:rnd(1,3),pr:2}),txt:p=>`فقدت الكرة، والمنافس يحملها وأنت خلفه بمسافة ${p.d} م.`,
- init:p=>({me:[32+p.d,34],ball:[31,30],opp:[32,30],gk:[3,32]}),od:[-6,0],
- O:[['ضغط مباشر على حامل الكرة',p=>p.d<=5?3:p.d<=8?2:0,.9,'الضغط من بعيد يكشف المساحة خلفك.','قربك يسمح باستعادة الكرة.','w'],
- ['العودة السريعة للتمركز',p=>p.d>8?3:1,[-10,-2],'العودة تمنح الخصم وقتًا وهو قريب منك.','المسافة كبيرة والعودة تحميك من المساحات.','l'],
- ['غلق المساحة',p=>p.d>=6&&p.d<=10?3:2,[-6,-3],'','غلق المساحة يبطئ الهجوم ويؤمن زملاءك.','l'],
- ['مراقبة المنافس',p=>p.s==3?2:1,.3,'المراقبة وحدها لا توقف حامل الكرة.','المنافس سريع، والمراقبة تحافظ على التوازن.','l']]},
-{id:'p5',n:'تمرير أم اختراق',sk:'التمرير والاختراق',tip:'المساحة أمامك تقرر بين التمرير والجري بالكرة.',
- gen:()=>({d:rnd(4,14),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`أمامك مساحة ${p.d} م قبل المدافع، والضغط ${PR[p.pr]}.`,
- init:p=>({me:[48,32],ball:[48,32],opp:[48+p.d,30],mate:[62,16],gk:[97,32]}),od:[-3,0],
- O:[['تمرير أمامي للزميل',p=>p.pr>=2?3:2,[0,0],'','الضغط مرتفع والتمرير يتجاوزه.','m'],
- ['اختراق بالكرة',p=>p.d>=8&&p.s<3?3:1,[10,0],'المساحة أو سرعة المدافع لا تسمحان.','المساحة كافية للتقدم.','c'],
- ['مراوغة المدافع',p=>p.d<=6?2:1,[8,5],'مراوغة من بعيد بلا حاجة.','','c'],
- ['تغيير جهة اللعب',p=>p.pr==3?3:2,[0,0],'','تحت ضغط عالٍ تحرر الجهة الأخرى اللعب.',[60,56]]]},
-{id:'p6',n:'التحرك بدون كرة',sk:'الحركة بدون كرة',tip:'اقرأ مكان المدافع قبل أن تتحرك.',
- gen:()=>({d:rnd(2,8),s:2,pr:rnd(1,3)}),txt:p=>`زميلك يحمل الكرة، والمدافع القريب منك على بعد ${p.d} م.`,
- init:p=>({me:[56,40],ball:[44,20],opp:[56+p.d,40],mate:[44,20],gk:[97,32]}),od:[-3,0],
- O:[['الجري خلف الدفاع',p=>p.d<=4?3:2,[16,-14],'','المدافع قريب فالجري خلفه يربكه.','c'],
- ['طلب الكرة بالقدم',p=>p.pr==1?3:1,[-6,-6],'مع الضغط تكون الكرة للقدم خطرة.','','c'],
- ['سحب المدافع للخارج',p=>p.pr>=2?3:2,[2,10],'','سحب المدافع يفتح مساحة لزميلك.','c'],
- ['دخول المساحة الفارغة',p=>p.d>=5?3:2,[10,-6],'','المدافع بعيد فالمساحة متاحة.','c'],
- ['الوقوف في مكانك',()=>0,[0,0],'الوقوف يلغي دورك في الهجمة.','','c']]},
-{id:'p7',n:'التحول الهجومي',sk:'التحول',tip:'أول لمسة بعد الاستعادة تقرر سرعة الهجمة.',
- gen:()=>({d:rnd(15,35),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`استعدت الكرة، وضغط المنافس ${PR[p.pr]}، وسرعته ${SP[p.s]}.`,
- init:p=>({me:[42,32],ball:[42,32],opp:[38,36],mate:[64,18],gk:[97,32]}),od:[3,-3],
- O:[['تمرير للأمام',p=>p.pr<=2?3:2,[0,0],'','التمرير للأمام يستغل انكشاف المنافس.','m'],
- ['الاحتفاظ بالكرة',p=>p.pr==3?3:1,[0,0],'الاحتفاظ يعطي المنافس وقتًا للتنظيم.','تحت ضغط عالٍ يؤمن الاحتفاظ الكرة.','c'],
- ['تغيير جهة اللعب',p=>p.s>=2?3:2,[0,0],'','تغيير الجهة يبتعد عن الضغط.',[55,58]],
- ['التقدم بالكرة',p=>p.pr==1?3:1,[10,0],'التقدم تحت ضغط يخاطر بالكرة.','لا ضغط فالتقدم يربح المساحة.','c']]},
-{id:'p8',n:'الضغط',sk:'الضغط',tip:'ضغط من قرب يستعيد الكرة، ومن بعيد يكشف ظهرك.',
- gen:()=>({d:rnd(3,10),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`حامل الكرة المنافس يبعد ${p.d} م عنك، وسرعته ${SP[p.s]}.`,
- init:p=>({me:[70-p.d,36],ball:[71,32],opp:[70,32],gk:[3,32]}),od:[-4,0],
- O:[['ضغط مباشر',p=>p.d<=5?3:p.d<=8?2:0,.9,'الضغط من بعيد يكشف المساحة خلفك.','قربك يسمح باستعادة الكرة.','w'],
- ['غلق خط التمرير',p=>p.d>=5?3:2,[4,-4],'','المسافة تسمح بغلق خط التمرير.','l'],
- ['توجيه المنافس نحو الخط',p=>p.pr>=2?3:2,[5,6],'','توجيهه نحو الخط يحصره.','l'],
- ['التراجع',p=>p.d>8?2:0,[-8,0],'التراجع يمنحه الوقت.','المسافة بعيدة والتراجع مقبول.','l']]},
-{id:'p9',n:'الثلث الأخير',sk:'العرضيات والاختراق',tip:'من الجناح: الضغط والمسافة يحددان بين العرضية والاختراق.',
- gen:()=>({d:rnd(12,28),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`على الجناح في الثلث الأخير، تبعد ${p.d} م عن المرمى، والضغط ${PR[p.pr]}.`,
- init:p=>({me:[100-p.d,12],ball:[100-p.d,12],opp:[104-p.d,16],mate:[88,34],gk:[97,32]}),od:[-3,0],
- O:[['عرضية للمنطقة',p=>p.pr<=2?3:2,[2,0],'','وجود زميل في المنطقة يجعل العرضية مجدية.','m'],
- ['الاختراق للداخل',p=>p.pr==1?3:p.s==1?2:1,[8,10],'الاختراق تحت ضغط يخاطر بالكرة.','لا ضغط فالاختراق مجدٍ.','c'],
- ['التسديد من الزاوية',p=>p.d<=16&&p.pr==1?2:0,[2,2],'التسديد من الجناح زاويته ضيقة.','','g'],
- ['تمرير ارتدادي للخلف',p=>p.pr==3?3:1,[-2,0],'التمرير للخلف يبطئ الهجمة.','تحت ضغط عالٍ يحافظ على الاستحواذ.',[70,30]]]},
-{id:'p10',n:'موقف مركب',sk:'اللعب تحت الضغط والحركة بعد التمرير',tip:'استلام ثم ضغط ثم مراوغة ثم تمرير ثم تحرك جديد: فكر في الخطوة التالية.',
- gen:()=>({d:rnd(2,6),s:rnd(1,3),pr:rnd(1,3)}),txt:p=>`استلمت الكرة والمدافع أمامك على بعد ${p.d} م، سرعته ${SP[p.s]} والضغط ${PR[p.pr]}.`,
- init:p=>({me:[50,32],ball:[50,32],opp:[50+p.d,32],mate:[58,18],gk:[97,32]}),od:[-3,0],
- O:[['مراوغة المدافع ثم التقدم',p=>p.d>=4&&p.s<3?3:1,[10,4],'المراوغة هنا مخاطرة بسبب القرب أو السرعة.','المسافة تسمح بتجاوزه.','c'],
- ['تمرير ثم التحرك لاستلام الكرة',p=>p.pr>=2?3:2,[8,-6],'','التمرير مع الحركة يكسر الضغط.','m'],
- ['الاحتفاظ بالكرة',p=>p.pr==1?2:0,[0,0],'الاحتفاظ أمام مدافع قريب يخسر الكرة.','','c'],
- ['تمرير للخلف وإعادة التموضع',()=>2,[-4,0],'','حل آمن يعيد بناء الهجمة.',[40,44]]]}
+ O:[['تمرير مباشر للزميل',p=>p.pr>=2?3:2,[0,0],'الضغط منخفض وكان الاحتفاظ أفضل.','مع ضغط مرتفع يخلصك التمرير المباشر.','m'],
+ ['الاحتفاظ بالكرة بمهارة',p=>p.pr==1?3:p.pr==2?1:0,[0,0],'الاحتفاظ تحت ضغط مرتفع يخسر الكرة.','الضغط منخفض والكرة آمنة معك.','c'],
+ ['الدوران السريع بالكرة',p=>p.d>=4?3:p.d>=3?2:0,[6,-4],'المدافع قريب جداً والدوران يكشف الكرة.','المسافة تسمح بالدوران وكسب المساحة.','c'],
+ ['إعادة الكرة للخلف للتأمين',p=>p.pr==3?3:2,[-2,0],'إعادة الكرة تبطئ الهجوم دون حاجة.','خيار آمن يحافظ على الاستحواذ.',[38,42]]]}
 ];
-const byId=id=>[...G,...P,...CU.map(mk)].find(s=>s.id==id);
 
-const PT=`<svg class="pt" id="pt" viewBox="0 0 100 64"><rect width="100" height="64" fill="#1d7a46"/><g fill="none" stroke="#fff" stroke-opacity=".6" stroke-width=".35"><rect x="1" y="1" width="98" height="62"/><path d="M50 1V63"/><circle cx="50" cy="32" r="8"/><rect x="1" y="16" width="16" height="32"/><rect x="83" y="16" width="16" height="32"/><rect x="99" y="27" width="1.5" height="10"/><rect x="-.5" y="27" width="1.5" height="10"/></g><g id="tr"></g>${[['o','#e74c3c',2],['m','#3498db',2],['x','#7f8c8d',2],['u','#f1c40f',2.2],['k','#fff',1.1]].map(([k,c,r])=>`<g id="e_${k}" class="en"><circle r="${r}" fill="${c}" stroke="#000" stroke-width=".3"/></g>`).join('')}</svg><div class="lg">🟡 أنت · 🔴 المنافس · 🔵 زميل · ⚪ الكرة</div><div class="lg" id="pl"></div>`;
+const byId=id=>[...G].find(s=>s.id==id);
+const PT=`<svg class="pt" id="pt" viewBox="0 0 100 64"><rect width="100" height="64" fill="#15803d"/><g fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".4"><rect x="1" y="1" width="98" height="62"/><path d="M50 1V63"/><circle cx="50" cy="32" r="8"/><rect x="1" y="16" width="16" height="32"/><rect x="83" y="16" width="16" height="32"/><rect x="99" y="27" width="1.5" height="10"/><rect x="-.5" y="27" width="1.5" height="10"/></g><g id="tr"></g>${[['o','#ef4444',2.2],['m','#3b82f6',2.2],['x','#94a3b8',2.2],['u','#f59e0b',2.5],['k','#ffffff',1.2]].map(([k,c,r])=>`<g id="e_${k}" class="en"><circle r="${r}" fill="${c}" stroke="#000" stroke-width=".4"/><circle r="${r*0.5}" fill="#000" fill-opacity="0.3"/></g>`).join('')}</svg><div class="lg">🟡 أنت (FUT Player) · 🔴 المنافس · 🔵 الزميل · ⚪ الكرة</div><div class="lg" id="pl"></div>`;
+
 function put(k,pos,d){const e=document.getElementById('e_'+k);if(!e)return;if(!pos){e.style.display='none';return}e.style.display='';e.style.transition=d?`transform ${d}s ease-in-out`:'none';e.style.transform=`translate(${pos[0]}px,${pos[1]}px)`}
 function setup(I){put('u',I.me);put('k',I.ball);put('o',I.opp);put('m',I.mate);put('x',I.gk)}
+
+// Voice Narration (TTS)
+function speakScenario(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar-SA';
+    utterance.rate = 1.0;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
 function play(i,dur,trail){const{sc,p}=S.cur,I=sc.init(p);
  const o=i<0?['',()=>0,0,'','',sc.O[0][5]]:sc.O[i],n=o[1](p),B=I.ball,M=I.me,m=o[2];
  const me2=typeof m=='number'?[M[0]+(B[0]-M[0])*m,M[1]+(B[1]-M[1])*m]:[M[0]+m[0],M[1]+m[1]];
@@ -228,106 +161,143 @@ function play(i,dur,trail){const{sc,p}=S.cur,I=sc.init(p);
  else if(md=='w')b2=n>=2?me2:[op2[0]-2,op2[1]];
  else if(md=='l')b2=[op2[0]-2,op2[1]];
  else b2=n>=2?md:op2;
- setup(I);$('#tr').innerHTML='';$('#pl').textContent='يعرض الآن: '+(i<0?'لا قرار':sc.O[i][0]);
+ setup(I);$('#tr').innerHTML='';$('#pl').textContent='عرض التحرّك: '+(i<0?'لا قرار':sc.O[i][0]);
  setTimeout(()=>{put('u',me2,dur);put('k',b2,dur);put('o',op2,dur);
-  if(trail)$('#tr').innerHTML=`<circle cx="${M[0]}" cy="${M[1]}" r="3.6" fill="none" stroke="#f1c40f" stroke-width=".5"/><line x1="${M[0]}" y1="${M[1]}" x2="${me2[0]}" y2="${me2[1]}" stroke="#f1c40f" stroke-width=".5" stroke-dasharray="1.5 1"/><line x1="${B[0]}" y1="${B[1]}" x2="${b2[0]}" y2="${b2[1]}" stroke="#fff" stroke-width=".4" stroke-dasharray="1 1"/>`},60)}
+  if(trail)$('#tr').innerHTML=`<circle cx="${M[0]}" cy="${M[1]}" r="3.6" fill="none" stroke="#f59e0b" stroke-width=".5"/><line x1="${M[0]}" y1="${M[1]}" x2="${me2[0]}" y2="${me2[1]}" stroke="#f59e0b" stroke-width=".5" stroke-dasharray="1.5 1"/><line x1="${B[0]}" y1="${B[1]}" x2="${b2[0]}" y2="${b2[1]}" stroke="#fff" stroke-width=".4" stroke-dasharray="1 1"/>`},60)}
 
-const S={role:null,age:'U15',lvl:'متوسط',mode:'test',q:[],i:0,res:[]};
+const S={role:'g',age:'U15',lvl:'متوسط',mode:'test',q:[],i:0,res:[]};
 const LV={'مبتدئ':5,'متوسط':4,'متقدم':3,'احترافي':2};
 const AGES=['U9','U11','U13','U15','U17','U19','Seniors'].map(a=>[a,a]);
 const LVS=[['🟢 مبتدئ','مبتدئ'],['🟡 متوسط','متوسط'],['🟠 متقدم','متقدم'],['🔴 احترافي','احترافي']];
-const MODES=[['📚 تعلم','learn'],['🧠 اختبار القرار','test'],['🏟️ محاكاة مباراة','match'],['⚡ تحدي سريع','quick']];
-const ld=()=>{try{return JSON.parse(localStorage.getItem('ssdz')||'[]')}catch(e){return[]}};
-const sv=a=>{try{localStorage.setItem('ssdz',JSON.stringify(a))}catch(e){}};
+const ld=()=>{try{return JSON.parse(localStorage.getItem('ssdz_fifa_pro')||'[]')}catch(e){return[]}};
+const sv=a=>{try{localStorage.setItem('ssdz_fifa_pro',JSON.stringify(a))}catch(e){}};
 const R=h=>{clearInterval(S.tm);$('#app').innerHTML=h;scrollTo(0,0)};
 const avg=a=>a.reduce((x,y)=>x+y,0)/(a.length||1);
 const bar=(l,v)=>`<div class="card"><div class="row" style="border:0"><span>${l}</span><b>${Math.round(v)}%</b></div><div class="bar"><i style="width:${Math.max(0,Math.min(100,v))}%"></i></div></div>`;
 
-function home(){R(`<h1><span class="fl">🇩🇿</span> SPORT SIMULATOR.DZ</h1><p class="sub">${t('sub')}</p><p class="slg">${t('slogan')}</p><h2>${t('path')}</h2>
-<div class="grid g2"><div class="card pick" onclick="role('g')"><div class="ic">🧤</div><h3>حارس المرمى</h3><b>GOALKEEPER</b><p>قراءة اللعب • اتخاذ القرار • التمركز • التوقيت • اختيار المهارة • سرعة الاستجابة</p><button class="b">${t('start')}</button></div>
-<div class="card pick" onclick="role('p')"><div class="ic">⚽</div><h3>اللاعب</h3><b>OUTFIELD PLAYER</b><p>قراءة اللعب • التمرير • التسديد • المراوغة • التمركز • التحرك بدون كرة</p><button class="b">${t('start')}</button></div></div>
-<div class="soon"><b>${t('soon')}</b><br>${t('soonT')}</div><div class="chips" style="justify-content:center"><button class="ch" onclick="coach()">👨‍🏫 COACH MODE</button></div>`)}
-function step(title,items,fn){window.cb=i=>fn(items[i][1]);R(`<button class="lk" onclick="home()">→ الرئيسية</button><h2>${title}</h2><div class="chips">${items.map((x,i)=>`<button class="ch" onclick="cb(${i})">${x[0]}</button>`).join('')}</div>`)}
-function role(r){S.role=r;S.sec=0;step(t('age'),AGES,a=>{S.age=a;step(t('lvl'),LVS,l=>{S.lvl=l;step(t('mode'),MODES,m=>{S.mode=m;start()})})})}
-function start(ids){const pool=S.role=='g'?G:P;S.q=ids||[...pool].sort(()=>Math.random()-.5);S.i=0;S.res=[];next()}
-function focus(id){S.sec=0;S.role=byId(id).role||id[0];start([byId(id),byId(id),byId(id),byId(id)])}
+function home(){R(`<h1><span class="fl">🇩🇿</span> EA SPORTS · SPORT SIMULATOR</h1><p class="sub">${t('sub')}</p><p class="slg">${t('slogan')}</p><h2>${t('path')}</h2>
+<div class="grid g2">
+<div class="card pick" onclick="start()"><div class="ic">🧤</div><h3>حارس المرمى والمحاكي الاحترافي</h3><b>FUT GOALKEEPER MODE</b><p>محاكاة الانفرادات، ركلات الجزاء، الركلات الحرة، والعرضيات بسرعة رد فعل بالمللي ثانية.</p><button class="b">${t('start')}</button></div></div>
+<div class="chips" style="justify-content:center"><button class="ch" onclick="perf()">📊 FUT PERFORMANCE CARD</button></div>`)}
+
+function start(ids){const pool=G;S.q=ids||[...pool].sort(()=>Math.random()-.5);S.i=0;S.res=[];next()}
+
 function next(){if(S.i>=S.q.length)return report();
- const sc=S.q[S.i],p=sc.gen();if(['U9','U11'].includes(S.age))p.s=Math.max(1,p.s-1);
- const lim=S.mode=='learn'?0:(S.sec||Math.max(2,LV[S.lvl]-(S.mode=='quick'?1:0)));S.cur={sc,p,lim,t0:performance.now()};
- R(`<div class="mt">موقف ${S.i+1}/${S.q.length} · ${S.age} · ${S.lvl}</div><h2>${sc.n}</h2><p>${sc.txt(p)}</p>${PT}
- ${lim?`<div class="bar"><i id="tb" style="width:100%"></i></div><div class="tc" id="tc">${lim}</div>`:`<div class="card">💡 ${sc.tip}</div>`}
+ const sc=S.q[S.i],p=sc.gen();
+ const lim=4;S.cur={sc,p,lim,t0:performance.now()};
+
+ const scenarioText = `${sc.n}. ${sc.txt(p)}`;
+ speakScenario(scenarioText);
+
+ R(`<div class="mt">موقف ${S.i+1}/${S.q.length} · ${S.age} · ${S.lvl}</div>
+ <div class="fut-card">
+   <div class="fut-rating">92<br><span class="fut-pos">GK</span></div>
+   <div class="fut-info">
+     <h3>${sc.n}</h3>
+     <p style="margin:0; font-size:0.9rem; color:var(--mut);">${sc.txt(p)}</p>
+   </div>
+ </div>
+ ${PT}
+ <div class="bar"><i id="tb" style="width:100%"></i></div><div class="tc" id="tc">${lim} ث</div>
  <div class="grid">${sc.O.map((o,i)=>`<button class="opt" onclick="ans(${i})">${o[0]}</button>`).join('')}</div>`);
  setup(sc.init(p));
- if(lim)S.tm=setInterval(()=>{const r=Math.max(0,lim-(performance.now()-S.cur.t0)/1000);$('#tc').textContent=Math.ceil(r);$('#tb').style.width=(r/lim*100)+'%';if(r<=0)ans(-1)},100)}
-function ans(i){clearInterval(S.tm);const{sc,p,lim,t0}=S.cur,t=(performance.now()-t0)/1000;
- const qs=sc.O.map(o=>o[1](p)),best=qs.indexOf(Math.max(...qs)),n=i<0?0:qs[i];
- const r={id:sc.id,n,t:+Math.min(t,lim||t).toFixed(1),opt:i==best,lim,role:S.role,age:S.age,lvl:S.lvl,mode:S.mode};
- S.res.push(r);const a=ld();a.push(r);sv(a);S.last={i,best,qs,n};res()}
-function res(){const{sc,p,lim}=S.cur,{i,best,qs,n}=S.last,o=i<0?null:sc.O[i],b=sc.O[best];
- const OUT=S.role=='g'?['هدف 🥅','ارتداد 🟠','إبعاد الكرة ⚪','تصدي ومسك الكرة 🧤']:['نتيجة سلبية 🔴','خطر 🟠','نجاح جزئي 🟡','نجاح 🟢'];
- const why=i<0?'تأخر القرار: الزمن جزء من القرار في المباراة.':n>=2?(o[4]||'القرار ملائم لهذا السياق.'):'هذا القرار كان أقل ملاءمة بسبب: '+(o[3]||'السياق لا يدعمه.');
- const ok=sc.O.filter((x,j)=>qs[j]==2&&j!=i).map(x=>x[0]);
- const an=S.mode=='match'?'':`<div class="card"><h3>تحليل القرار</h3><p><b>قرارك:</b> ${o?o[0]:'لا قرار'}</p><p><b>النتيجة:</b> ${OUT[n]}</p><p><b>لماذا؟</b> ${why}</p>
- <p><b>عوامل القرار:</b> ${sc.cu?'':`المسافة ${p.d} م · السرعة ${SP[p.s]} · الضغط ${PR[p.pr]} · `}الزمن ${lim?lim+' ث':'مفتوح'}</p><p><b>المهارة المرتبطة:</b> ${sc.sk}</p>
- <p><b>القرار البديل:</b> ${best!=i?b[0]+(b[4]?' — '+b[4]:''):'قرارك هو الأنسب هنا ✅'}${ok.length?`<br>قرارات مقبولة أيضًا: ${ok.join('، ')}`:''}</p><p><b>ملاحظة تدريبية:</b> ${sc.tip}</p></div>`;
- R(`<div class="mt">موقف ${S.i+1}/${S.q.length}</div><h2>${sc.n}</h2>${PT}<div class="ob n${n}">${OUT[n]}</div>
- <div class="chips"><button class="ch" onclick="play(${i},1.4,0)">▶️ تشغيل / إعادة</button><button class="ch" onclick="play(${i},4,0)">🐢 Slow Motion</button><button class="ch" onclick="play(${i},1.4,1)">📍 المسار ونقطة القرار</button>${best!=i?`<button class="ch" onclick="play(${best},1.4,1)">⚖️ مقارنة بالقرار البديل</button>`:''}</div>${an}
- <button class="b" onclick="S.i++;next()">${S.i+1>=S.q.length?'عرض التقرير':'الموقف التالي'}</button>`);
- setup(sc.init(p));play(i,1.4,0)}
-function report(){const r=S.res,N=r.length,tm=r.filter(x=>x.lim);
- const weak=r.filter(x=>x.n<2).map(x=>byId(x.id));
- R(`<h2>${S.mode=='match'?'MATCH DECISION REPORT':'تقرير الجلسة'}</h2>${bar('🧠 اتخاذ القرار',avg(r.map(x=>x.n))/3*100)}${tm.length?bar('⚡ سرعة الاستجابة',avg(tm.map(x=>1-x.t/x.lim))*100):''}${bar('🎯 توافق مع القرار الأنسب',r.filter(x=>x.opt).length/N*100)}
- <div class="card">${r.map((x,i)=>`<div class="row"><span>${i+1}. ${byId(x.id).n}</span><span>${['🔴','🟠','🟡','🟢'][x.n]}</span><span>${x.lim?x.t+' ث':'—'}</span></div>`).join('')}</div>
- ${weak.length?`<div class="card"><b>مهارات مرتبطة بالمواقف الأقل ملاءمة:</b><br>${[...new Set(weak.map(w=>w.sk))].join('، ')}</div>`:'<div class="card">🟢 قرارات ملائمة في جميع المواقف.</div>'}
- <div class="chips"><button class="b" onclick="start()">🔄 جلسة جديدة</button><button class="ch" onclick="perf()">📊 MY PERFORMANCE</button><button class="ch" onclick="home()">الرئيسية</button></div>`)}
-function perf(){const a=ld();
- if(!a.length)return R(`<h2>MY PERFORMANCE</h2><div class="card">لا توجد محاولات بعد. ابدأ جلسة تدريب لتظهر إحصائياتك هنا.</div><button class="b" onclick="home()">ابدأ التدريب</button>`);
- const tm=a.filter(x=>x.lim),per={};a.forEach(x=>(per[x.id]=per[x.id]||[]).push(x));const last=a[a.length-1];
- const wk=Object.entries(per).map(([id,v])=>[id,v.filter(x=>x.n<2).length]).filter(w=>w[1]>=2).sort((x,y)=>y[1]-x[1])[0];
- R(`<h2>MY PERFORMANCE</h2><div class="card"><div class="row"><span>الفئة</span><b>${last.age}</b></div><div class="row"><span>المركز</span><b>${last.role=='g'?'حارس مرمى':'لاعب'}</b></div><div class="row"><span>عدد السيناريوهات</span><b>${Object.keys(per).length}</b></div><div class="row"><span>عدد المحاولات</span><b>${a.length}</b></div><div class="row"><span>متوسط زمن القرار</span><b>${tm.length?avg(tm.map(x=>x.t)).toFixed(1)+' ث':'—'}</b></div><div class="row"><span>القرارات الناجحة</span><b>${a.filter(x=>x.n>=2).length}</b></div></div>
- <h3>متوسط الأداء لكل موقف</h3>${Object.entries(per).map(([id,v])=>bar(byId(id).n,avg(v.map(x=>x.n))/3*100)).join('')}
- ${wk?`<div class="card"><b>ملاحظة تدريبية</b><br>تكرر لديك هذا النوع من القرار: «${byId(wk[0]).n}».<br><b>اقتراح تدريبي:</b> جرّب مجموعة مواقف مركزة على هذا النوع من القرار.<br><br><button class="b" onclick="focus('${wk[0]}')">تدريب مركّز</button></div>`:''}
- <div class="chips"><button class="ch" onclick="home()">الرئيسية</button><button class="ch" onclick="sv([]);perf()">مسح الإحصائيات</button></div>`)}
-function about(){R(`<h2><span class="fl">🇩🇿</span> SPORT SIMULATOR.DZ</h2><div class="card"><p>منصة لمحاكاة وتدريب القرار الرياضي. السؤال ليس فقط: كيف تؤدي المهارة؟ بل: متى تستخدمها؟ ولماذا؟ وما القرار المناسب لهذا الموقف؟</p><p><b>المربي الرياضي ومدرب الحراس بن عبد الله الهواري</b><br>مؤسس ومطور المشروع</p></div><button class="b" onclick="home()">الرئيسية</button>`)}
-let CU=[];try{CU=JSON.parse(localStorage.getItem('ssdz_cu')||'[]')}catch(e){}
-const svc=()=>{try{localStorage.setItem('ssdz_cu',JSON.stringify(CU))}catch(e){}};
-const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const sel=(id,items,v)=>`<select id="${id}">${items.map(x=>`<option value="${x[1]}"${x[1]==v?' selected':''}>${x[0]}</option>`).join('')}</select>`;
-function mk(c){const g=c.role=='g';return{id:'c'+c.id,cu:1,role:c.role,n:c.n,sk:c.sk||'مهارة مخصصة',tip:c.tip||'سيناريو أنشأه المدرب.',gen:()=>({d:0,s:2,pr:2}),txt:()=>c.txt,
- init:()=>g?{me:[97,32],opp:[80,30],ball:[82,30]}:{me:[50,32],ball:[50,32],opp:[58,32],mate:[62,16],gk:[97,32]},od:[4,0],
- O:c.O.map(o=>[o.l,()=>o.q,g?.5:[8,0],o.r,o.r,g?undefined:'c'])}}
-function cOpts(){const r=$('#cr').value,pool=[...(r=='g'?G:P),...CU.filter(c=>c.role==r).map(mk)];$('#cs').innerHTML='<option value="all">كل المواقف (عشوائي)</option>'+pool.map(s=>`<option value="${s.id}">${s.n}</option>`).join('')}
-function coach(){R(`<button class="lk" onclick="home()">→ الرئيسية</button><h2>👨‍🏫 COACH MODE</h2><div class="card"><h3>إعداد جلسة</h3>
-<label>الرياضة</label><select disabled><option>⚽ كرة القدم</option></select>
-<label>المركز</label>${sel('cr',[['🧤 حارس مرمى','g'],['⚽ لاعب','p']],S.role||'g')}
-<label>الفئة</label>${sel('ca',AGES,S.age)}<label>الصعوبة</label>${sel('cl',LVS,S.lvl)}
-<label>نوع الموقف</label><select id="cs"></select>
-<label>الوقت لكل قرار (ثانية)</label><input id="ct" type="number" min="2" max="15" value="4">
-<label>عدد المواقف</label><input id="cn" type="number" min="1" max="20" value="5"><br><br><button class="b" onclick="cStart()">ابدأ الجلسة</button></div>
-<div class="card"><h3>سيناريوهاتي</h3>${CU.length?CU.map(c=>`<div class="row"><span>${c.role=='g'?'🧤':'⚽'} ${esc(c.n)}</span><span><button class="lk" onclick="cPlay(${c.id})">▶</button><button class="lk" onclick="cEdit(${c.id})">✏️</button><button class="lk" onclick="cDel(${c.id})">🗑</button></span></div>`).join(''):'<p class="mt">لم تنشئ سيناريوهات بعد.</p>'}<br><button class="b" onclick="cEdit()">➕ إنشاء سيناريو</button></div>`);
- $('#cr').onchange=cOpts;cOpts()}
-function cStart(){const r=$('#cr').value,v=$('#cs').value,n=Math.max(1,Math.min(20,+$('#cn').value||5));
- S.role=r;S.age=$('#ca').value;S.lvl=$('#cl').value;S.mode='test';S.sec=Math.max(2,Math.min(15,+$('#ct').value||4));
- const pool=[...(r=='g'?G:P),...CU.filter(c=>c.role==r).map(mk)];let q=[];
- if(v=='all'){while(q.length<n)q.push(...[...pool].sort(()=>Math.random()-.5));q=q.slice(0,n)}else q=Array(n).fill(byId(v));
- start(q)}
-function cPlay(id){const c=CU.find(x=>x.id==id);S.role=c.role;S.mode='learn';S.sec=0;start([mk(c)])}
-function cDel(id){CU=CU.filter(c=>c.id!=id);svc();coach()}
-function cEdit(id){const ex=CU.find(x=>x.id==id),c=ex||{id:Date.now(),role:'g',n:'',txt:'',sk:'',tip:'',O:[]};
- const Q=[['3 — الأنسب',3],['2 — مقبول',2],['1 — أقل ملاءمة',1],['0 — خاطئ',0]];
- R(`<button class="lk" onclick="coach()">→ رجوع</button><h2>${ex?'عزل وتعديل':'إنشاء'} سيناريو</h2><div class="card">
-<label>المركز</label>${sel('er',[['🧤 حارس مرمى','g'],['⚽ لاعب','p']],c.role)}
-<label>عنوان الموقف</label><input id="en" value="${esc(c.n)}">
-<label>وصف الموقف</label><textarea id="et" rows="3">${esc(c.txt)}</textarea>
-<label>المهارة المرتبطة</label><input id="es" value="${esc(c.sk)}">
-<label>ملاحظة تدريبية</label><input id="ei" value="${esc(c.tip)}">
-${[0,1,2,3].map(i=>{const o=c.O[i]||{l:'',q:i?0:3,r:''};return`<div class="card"><b>الخيار ${i+1}</b><input id="ol${i}" placeholder="نص القرار" value="${esc(o.l)}">${sel('oq'+i,Q,o.q)}<input id="or${i}" placeholder="سبب التقييم" value="${esc(o.r)}"></div>`}).join('')}
-<div id="eer" style="color:var(--rd)"></div><button class="b" onclick="cSave(${c.id})">💾 حفظ السيناريو</button></div>`)}
-function cSave(id){const O=[0,1,2,3].map(i=>({l:$('#ol'+i).value.trim(),q:+$('#oq'+i).value,r:$('#or'+i).value.trim()})).filter(o=>o.l);
- const c={id,role:$('#er').value,n:$('#en').value.trim(),txt:$('#et').value.trim(),sk:$('#es').value.trim(),tip:$('#ei').value.trim(),O};
- const e=!c.n||!c.txt?'أدخل عنوان الموقف ووصفه.':O.length<2?'أضف خيارين على الأقل.':!O.some(o=>o.q==3)?'حدّد خيارًا واحدًا على الأقل كالأنسب (3).':'';
- if(e){$('#eer').textContent=e;return}
- const k=CU.findIndex(x=>x.id==id);k<0?CU.push(c):CU[k]=c;svc();coach()}
+
+ S.tm=setInterval(()=>{
+   const elapsed = (performance.now()-S.cur.t0)/1000;
+   const r = Math.max(0, lim - elapsed);
+   $('#tc').textContent = r.toFixed(1) + ' ث';
+   $('#tb').style.width = (r/lim*100)+'%';
+   if(r<=0) ans(-1);
+ }, 100);
+}
+
+function ans(i){
+ clearInterval(S.tm);
+ const {sc, p, lim, t0} = S.cur;
+ const reactionTimeMs = Math.round(performance.now() - t0); // Milliseconds precision!
+
+ const qs = sc.O.map(o => o[1](p));
+ const best = qs.indexOf(Math.max(...qs));
+ const n = i < 0 ? 0 : qs[i];
+
+ const r = {
+   id: sc.id,
+   n,
+   reactionMs: reactionTimeMs,
+   opt: i == best,
+   role: 'g'
+ };
+
+ S.res.push(r);
+ const a = ld(); a.push(r); sv(a);
+ S.last = { i, best, qs, n, reactionMs: reactionTimeMs };
+ res();
+}
+
+function res(){
+ const {sc, p, lim} = S.cur;
+ const {i, best, qs, n, reactionMs} = S.last;
+ const o = i < 0 ? null : sc.O[i];
+ const b = sc.O[best];
+
+ const speedRating = reactionMs < 1200 ? '⚡ برق (سريع جداً)' : reactionMs < 2500 ? '👍 ممتاز' : '⚠️ بطيء';
+ const OUT = ['هدف مرماك 🥅', 'ارتداد خطير 🟠', 'إبعاد ناجح ⚪', 'تصدي أسطوري 🧤'];
+
+ R(`<div class="mt">موقف ${S.i+1}/${S.q.length}</div>
+ <h2>${sc.n}</h2>
+ ${PT}
+ <div class="ob n${n}">${OUT[n]}</div>
+ <div class="card" style="text-align:center; font-weight:800; color:var(--go);">
+   ⏱️ سرعة رد الفعل واتخاذ القرار: ${reactionMs} مللي ثانية (${speedRating})
+ </div>
+ <div class="chips">
+   <button class="ch" onclick="play(${i},1.4,0)">▶️ تشغيل الحركة</button>
+   <button class="ch" onclick="play(${i},4,0)">🐢 Slow Motion</button>
+ </div>
+ <div class="card">
+   <h3>تحليل EA SPORTS</h3>
+   <p><b>قرارك:</b> ${o ? o[0] : 'لا قرار'}</p>
+   <p><b>لماذا؟</b> ${n >= 2 ? (o[4] || 'قرار سليم.') : (o[3] || 'السياق لا يدعمه.')}</p>
+   <p><b>القرار البديل:</b> ${best != i ? b[0] : 'قرارك هو الأنسب والأفضل ✅'}</p>
+ </div>
+ <button class="b" onclick="S.i++;next()">${S.i+1>=S.q.length?'عرض بطاقة الأداء FUT':'الموقف التالي'}</button>`);
+ setup(sc.init(p)); play(i,1.4,0);
+}
+
+function report(){
+ const r = S.res, N = r.length;
+ const score = Math.round(avg(r.map(x => x.n)) / 3 * 99);
+ const avgReaction = Math.round(avg(r.map(x => x.reactionMs)));
+
+ R(`
+ <h2>بطاقة الأداء FUT Match Report 🎮</h2>
+ <div class="fut-card" style="text-align:center; justify-content:center; background:linear-gradient(135deg, #f59e0b 0%, #0f172a 100%); color:#000;">
+   <div>
+     <div style="font-size:3.5rem; font-weight:900; color:#fff; line-height:1;">${score}</div>
+     <div style="font-weight:800; color:#000;">FUT RATING SCORE ⭐</div>
+     <div style="font-size:0.85rem; margin-top:6px; color:#fff;">متوسط زمن رد الفعل: ${avgReaction} ms</div>
+   </div>
+ </div>
+ ${bar('🧠 دقة اتخاذ القرار', avg(r.map(x => x.n)) / 3 * 100)}
+ ${bar('🎯 التطابق مع القرار الأنسب', r.filter(x => x.opt).length / N * 100)}
+
+ <div class="chips" style="margin-top:20px;">
+   <button class="b" onclick="start()">🔄 جلسة جديدة (Play Again)</button>
+   <button class="ch" onclick="window.print()">🖨️ طباعة وتصدير PDF</button>
+   <button class="ch" onclick="home()">الرئيسية</button>
+ </div>`);
+}
+
+function perf(){
+ const a = ld();
+ if(!a.length) return R(`<h2>FUT PERFORMANCE</h2><div class="card">لا توجد محاولات مسجلة بعد.</div><button class="b" onclick="home()">الرئيسية</button>`);
+ R(`<h2>FUT PERFORMANCE STATS</h2><div class="card"><div class="row"><span>إجمالي المحاولات</span><b>${a.length}</b></div><div class="row"><span>متوسط سرعة رد الفعل</span><b>${Math.round(avg(a.map(x=>x.reactionMs)))} ms</b></div></div><button class="b" onclick="home()">الرئيسية</button>`);
+}
+
+function about(){
+ R(`<h2><span class="fl">🇩🇿</span> SPORT SIMULATOR.DZ</h2><div class="card"><p>محاكي القرار الرياضي بأسلوب FIFA Pro مع التوجيه الصوتي وقياس رد الفعل بالمللي ثانية.</p><p><b>المربي الرياضي ومدرب الحراس بن عبد الله الهواري</b></p></div><button class="b" onclick="home()">الرئيسية</button>`);
+}
+
 home();
 </script>
 </body>
