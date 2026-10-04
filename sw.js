@@ -1,4 +1,4 @@
-const CACHE_NAME = 'houari-apps-v7';
+const CACHE_NAME = 'houari-apps-v8';
 const ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const ASSETS = [
   './training-bank.html',
   './ai-coach.html',
   './qrcode-tool.html',
+  './prayer-lock.html',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',

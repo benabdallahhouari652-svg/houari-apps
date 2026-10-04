@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تركيز الصلاة وقفل الانشغال 🕌 | Prayer Focus DZ</title>
+<meta name="description" content="تطبيق إسلامي بيداغوجي لمساعدتك وأبنائك على عدم الانشغال بالهاتف وقت الصلاة: رفع أذان الصلاة وقفل الشاشة لمدة 15 دقيقة.">
+<meta name="theme-color" content="#0f5b3a">
+
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b1912;
+  --card: #132a1e;
+  --ink: #f0fdf4;
+  --mut: #86efac;
+  --gold: #fbbf24;
+  --green: #10b981;
+  --red: #ef4444;
+  --border: #1e3a29;
+  box-sizing: border-box;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: 'Cairo', system-ui, sans-serif; line-height: 1.8;
+  text-align: center; -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; text-decoration: none; }
+
+header {
+  background: var(--card); border-bottom: 2px solid var(--gold);
+  padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+}
+.brand { font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; color: var(--gold); }
+
+main { max-width: 800px; margin: 0 auto; padding: 20px 16px; }
+
+.card {
+  background: var(--card); border: 2px solid var(--border); border-radius: 20px;
+  padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px;
+}
+
+h2 { font-size: 1.4rem; font-weight: 900; color: var(--gold); margin-top: 0; }
+
+.prayer-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin: 20px 0;
+}
+.prayer-item {
+  background: rgba(16, 185, 129, 0.1); border: 2px solid var(--green); border-radius: 14px;
+  padding: 14px; display: flex; flex-direction: column; gap: 4px;
+}
+.prayer-name { font-weight: 900; font-size: 1.05rem; color: var(--gold); }
+.prayer-time { font-family: monospace; font-size: 1.1rem; font-weight: 700; color: #fff; }
+
+.btn-act {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff; border: none; padding: 12px 28px; border-radius: 12px;
+  font-family: inherit; font-weight: 900; font-size: 1.05rem; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-act:hover { transform: scale(1.05); }
+
+/* Lockdown Screen Overlay */
+.lockdown-overlay {
+  position: fixed; inset: 0; background: #06110b; z-index: 1000;
+  display: none; flex-direction: column; justify-content: center; align-items: center;
+  padding: 30px; text-align: center; border: 8px solid var(--gold);
+}
+.lockdown-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.timer-box {
+  font-size: 4rem; font-weight: 900; font-family: monospace; color: var(--gold);
+  margin: 20px 0; text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+}
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #1e293b; color: #fff; padding: 10px 20px; border-radius: 99px;
+  font-weight: 700; font-size: 0.9rem; z-index: 2000; opacity: 0; transition: all 0.3s;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span>🕌</span> تركيز الصلاة وقفل الانشغال | Prayer Focus DZ
+  </div>
+  <a href="index.html" style="color:#fff; font-weight:700; text-decoration:none;">← المتجر</a>
+</header>
+
+<main>
+  <div class="card">
+    <h2>🕌 أوقات الصلاة والتنبيه الذكي</h2>
+    <p style="font-size:0.92rem; color:var(--mut);">ساعد أطفالك وعائلتك على الابتعاد عن الألعاب والهواتف وقت الصلاة. يتيح التطبيق رفع الأذان وقفل الهاتف والتابلت لمدة 15 دقيقة.</p>
+
+    <div class="prayer-grid">
+      <div class="prayer-item"><span class="prayer-name">الفجر</span><span class="prayer-time">05:15 أثراً</span></div>
+      <div class="prayer-item"><span class="prayer-name">الظهر</span><span class="prayer-time">12:45 ظهراً</span></div>
+      <div class="prayer-item"><span class="prayer-name">العصر</span><span class="prayer-time">16:10 عصراً</span></div>
+      <div class="prayer-item"><span class="prayer-name">المغرب</span><span class="prayer-time">19:20 مساءً</span></div>
+      <div class="prayer-item"><span class="prayer-name">العشاء</span><span class="prayer-time">20:50 ليلاً</span></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-act" id="btnTestLockdown">🔒 تفعيل قفل الصلاة التجريبي (15 دقيقة)</button>
+    </div>
+  </div>
+</main>
+
+<!-- Lockdown Shield Screen -->
+<div class="lockdown-overlay" id="lockdownScreen">
+  <div style="font-size:4rem;">🕌</div>
+  <h1 style="color:var(--gold); margin:10px 0; font-size:2rem;">حي على الصلاة.. حي على الفلاح</h1>
+  <p style="font-size:1.1rem; max-width:550px; color:#a7f3d0;">تم قفل الشاشة مؤقتاً لتبتعد عن الألعاب والهاتف وتؤدي صلاتك بخشوع وراحة بال.</p>
+
+  <div class="timer-box" id="lockdownTimer">15:00</div>
+
+  <p style="font-size:0.85rem; color:var(--mut);">سيتم فتح الهاتف تلقائياً بعد انتهاء وقت الصلاة (15 دقيقة).</p>
+
+  <button class="btn-act" id="btnEmergencyUnlock" style="background:#ef4444; margin-top:20px; font-size:0.85rem; padding:8px 16px;">🔓 إلغاء الطوارئ للأبوين</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const toast = document.getElementById("toast");
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+let lockdownInterval;
+function startLockdown(durationMinutes = 15) {
+  const overlay = document.getElementById("lockdownScreen");
+  overlay.classList.add("active");
+
+  // Play Adhan sound or notification
+  if ('speechSynthesis' in window) {
+    const utter = new SpeechSynthesisUtterance("حي على الصلاة. حي على الفلاح. وقت الصلاة حان.");
+    utter.lang = 'ar-SA';
+    window.speechSynthesis.speak(utterance);
+  }
+
+  let timeLeft = durationMinutes * 60;
+  const timerDisplay = document.getElementById("lockdownTimer");
+
+  clearInterval(lockdownInterval);
+  lockdownInterval = setInterval(() => {
+    if (timeLeft <= 0) {
+      clearInterval(lockdownInterval);
+      overlay.classList.remove("active");
+      showToast("انتهى وقت قفل الصلاة. تقبل الله طاعتكم  تقبل الله! 🌟");
+      return;
+    }
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+    timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+}
+
+document.getElementById("btnTestLockdown").onclick = () => {
+  startLockdown(15);
+  showToast("تم تفعيل وضع قفل الصلاة (15 دقيقة) 🔒");
+};
+
+document.getElementById("btnEmergencyUnlock").onclick = () => {
+  clearInterval(lockdownInterval);
+  document.getElementById("lockdownScreen").classList.remove("active");
+  showToast("تم إلغاء القفل مؤقتاً");
+};
+</script>
+</body>
+</html>
