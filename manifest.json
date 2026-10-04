@@ -1,0 +1,26 @@
+{
+  "name": "متجر تطبيقات بن عبدالله الهواري",
+  "short_name": "متجر الهواري",
+  "description": "متجر جزائري لعرض واستخدام التطبيقات والأدوات الرياضية والتعليمية الرقمية للمدربين والرياضيين وحراس المرمى.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d1712",
+  "theme_color": "#0f5b3a",
+  "lang": "ar",
+  "dir": "rtl",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "https://bespoke-raindrop-fdd888.netlify.app/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://bespoke-raindrop-fdd888.netlify.app/icon-192.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
