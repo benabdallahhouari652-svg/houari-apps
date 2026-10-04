@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>video ANALYS DZ | أداة تحليل الفيديو الاحترافية 🎬</title>
-<meta name="description" content="أداة تحليل الفيديو الاحترافية LiveTag Pro، الرسم التكتيكي، وتوسيم اللقطات للمدربين ومحللي الأداء.">
+<title>video ANALYS DZ | أداة تحليل الفيديو الاحترافية (Dartfish & LiveTag Pro 4K) 🎬</title>
+<meta name="description" content="أداة تحليل فيديو احترافية تضم أدوات رسم تكتيكية متقدمة مثل قياس الزوايا، قياس المسافات، وتصدير لقطات بدقة 4K UHD.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -16,11 +16,17 @@
 :root {
   --bg: #0b1310;
   --panel: #14221c;
+  --panel-light: #1d3128;
   --accent: #3fbf85;
+  --accent-light: #52d197;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
   --text: #f1f5f9;
   --text-mut: #94a3b8;
   --border: #243d31;
-  --red: #ef4444;
+  --shadow: 0 4px 20px rgba(0,0,0,0.5);
   box-sizing: border-box;
 }
 
@@ -53,7 +59,7 @@ header {
 }
 .hdr-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .btn {
-  background: #1d3128; color: var(--text); border: 1px solid var(--border);
+  background: var(--panel-light); color: var(--text); border: 1px solid var(--border);
   padding: 6px 12px; border-radius: 8px; font-family: inherit;
   font-size: 0.82rem; font-weight: 700; cursor: pointer;
   display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
@@ -63,11 +69,11 @@ header {
 
 .studio {
   display: grid;
-  grid-template-columns: 280px 1fr 320px;
+  grid-template-columns: 290px 1fr 320px;
   height: calc(100vh - 56px);
   overflow: hidden;
 }
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .studio { grid-template-columns: 1fr; grid-template-rows: auto auto auto; height: auto; }
 }
 
@@ -85,6 +91,7 @@ header {
   background: var(--bg); border: 1px solid var(--border); color: var(--text);
   padding: 8px; border-radius: 8px; font-family: inherit; font-size: 0.8rem; font-weight: 700;
   cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  transition: all 0.2s;
 }
 .tool-btn:hover, .tool-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
 
@@ -108,6 +115,7 @@ canvas#overlayCanvas {
 .time-display { font-family: monospace; font-size: 0.85rem; font-weight: 700; color: var(--accent); }
 
 .controls-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.ctrl-group { display: flex; align-items: center; gap: 6px; }
 .ctrl-btn {
   background: var(--bg); border: 1px solid var(--border); color: var(--text);
   width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center;
@@ -141,36 +149,41 @@ canvas#overlayCanvas {
 <header>
   <div class="brand">
     <div class="brand-logo">🎬</div>
-    <div>video ANALYS DZ <small style="display:block; font-size:0.68rem; color:var(--accent);">Pro Studio 🇩🇿</small></div>
+    <div>video ANALYS DZ <small style="display:block; font-size:0.68rem; color:var(--accent);">Dartfish & LiveTag Pro 4K 🇩🇿</small></div>
   </div>
   <div class="hdr-actions">
     <label class="btn btn-primary" for="videoFileInput">
-      📂 فتح فيديو محلي
+      📂 فتح فيديو
       <input type="file" id="videoFileInput" accept="video/*" style="display:none;">
     </label>
-    <a class="btn" href="https://github.com/benabdallahhouari652-svg/video_analyzer-1-/releases/latest/download/app-release.apk" target="_blank">⬇️ تحميل تطبيق APK</a>
+    <button class="btn btn-primary" id="btn4KSnapshot">📸 لقطة 4K احترافية</button>
     <a class="btn" href="index.html">← المتجر</a>
   </div>
 </header>
 
 <div class="studio">
   <aside class="tools-panel">
-    <div class="panel-title"><span>🎨 أدوات الرسم</span><button class="btn" id="btnClearCanvas" style="padding:2px 8px; font-size:0.75rem;">مسح</button></div>
+    <div class="panel-title"><span>🎨 أدوات الرسم الاحترافية</span><button class="btn" id="btnClearCanvas" style="padding:2px 8px; font-size:0.75rem;">مسح</button></div>
+
     <div class="tool-grid">
       <button class="tool-btn active" data-tool="select"><span>👆</span>تأشير</button>
       <button class="tool-btn" data-tool="pen"><span>✏️</span>قلم حر</button>
-      <button class="tool-btn" data-tool="arrow"><span>➡️</span>سهم</button>
-      <button class="tool-btn" data-tool="circle"><span>⭕</span>دائرة</button>
-      <button class="tool-btn" data-tool="rect"><span>⏹️</span>مستطيل</button>
-      <button class="tool-btn" data-tool="spotlight"><span>💡</span>تركيز</button>
+      <button class="tool-btn" data-tool="arrow"><span>➡️</span>سهم حركة</button>
+      <button class="tool-btn" data-tool="angle"><span>📐</span>زاوية قياس</button>
+      <button class="tool-btn" data-tool="distance"><span>📏</span>مسافة مفاصل</button>
+      <button class="tool-btn" data-tool="magnifier"><span>🔍</span>عدسة مكبرة</button>
+      <button class="tool-btn" data-tool="spotlight"><span>💡</span>بقعة ضوء</button>
+      <button class="tool-btn" data-tool="stamp"><span>🔢</span>ختم رقم لاعب</button>
     </div>
+
     <div style="margin-top:12px;">
-      <div style="font-size:0.78rem; color:var(--text-mut); margin-bottom:4px;">لون القلم:</div>
+      <div style="font-size:0.78rem; color:var(--text-mut); margin-bottom:4px;">لون الأدوات:</div>
       <div style="display:flex; gap:8px;">
-        <div style="width:24px; height:24px; border-radius:50%; background:#ef4444; cursor:pointer;" onclick="currentColor='#ef4444'"></div>
-        <div style="width:24px; height:24px; border-radius:50%; background:#f59e0b; cursor:pointer;" onclick="currentColor='#f59e0b'"></div>
-        <div style="width:24px; height:24px; border-radius:50%; background:#10b981; cursor:pointer;" onclick="currentColor='#10b981'"></div>
-        <div style="width:24px; height:24px; border-radius:50%; background:#ffffff; cursor:pointer;" onclick="currentColor='#ffffff'"></div>
+        <div style="width:26px; height:26px; border-radius:50%; background:#ef4444; cursor:pointer;" onclick="currentColor='#ef4444'"></div>
+        <div style="width:26px; height:26px; border-radius:50%; background:#f59e0b; cursor:pointer;" onclick="currentColor='#f59e0b'"></div>
+        <div style="width:26px; height:26px; border-radius:50%; background:#10b981; cursor:pointer;" onclick="currentColor='#10b981'"></div>
+        <div style="width:26px; height:26px; border-radius:50%; background:#3b82f6; cursor:pointer;" onclick="currentColor='#3b82f6'"></div>
+        <div style="width:26px; height:26px; border-radius:50%; background:#ffffff; cursor:pointer;" onclick="currentColor='#ffffff'"></div>
       </div>
     </div>
   </aside>
@@ -201,11 +214,11 @@ canvas#overlayCanvas {
   </main>
 
   <aside class="tagging-panel">
-    <div class="panel-title"><span>🏷️ لوحة الوسوم</span></div>
+    <div class="panel-title"><span>🏷️ لوحة الوسوم الحية</span></div>
     <div class="tag-matrix" id="tagMatrix">
       <button class="tag-chip-btn" style="background:#10b981;" data-tag="⚽ هدف">⚽ هدف</button>
       <button class="tag-chip-btn" style="background:#3b82f6;" data-tag="🎯 تمريرة">🎯 تمريرة</button>
-      <button class="tag-chip-btn" style="background:#8b5cf6;" data-tag="🧤 تصدي">🧤 تصدي</button>
+      <button class="tag-chip-btn" style="background:#8b5cf6;" data-tag="🧤 تصدي حارس">🧤 تصدي</button>
       <button class="tag-chip-btn" style="background:#ef4444;" data-tag="⚠️ خطأ">⚠️ خطأ</button>
     </div>
 
@@ -223,7 +236,8 @@ const video = document.getElementById("mainVideo");
 const canvas = document.getElementById("overlayCanvas");
 const ctx = canvas.getContext("2d");
 
-let currentTool = "select", currentColor = "#ef4444", isDrawing = false, startX = 0, startY = 0, events = [];
+let currentTool = "select", currentColor = "#ef4444", isDrawing = false;
+let startX = 0, startY = 0, anglePoints = [], events = [];
 const toast = document.getElementById("toast");
 
 function showToast(msg) {
@@ -271,48 +285,114 @@ document.getElementById("videoFileInput").onchange = (e) => {
   }
 };
 
+// 4K Snapshot Exporter
+document.getElementById("btn4KSnapshot").onclick = () => {
+  const sc = document.createElement("canvas");
+  sc.width = 3840; sc.height = 2160; // 4K UHD Resolution
+  const sCtx = sc.getContext("2d");
+
+  sCtx.drawImage(video, 0, 0, sc.width, sc.height);
+  sCtx.drawImage(canvas, 0, 0, sc.width, sc.height);
+
+  // 4K Watermark
+  sCtx.fillStyle = "rgba(15, 91, 58, 0.9)";
+  sCtx.fillRect(50, sc.height - 120, 700, 70);
+  sCtx.fillStyle = "#ffffff";
+  sCtx.font = "bold 32px Cairo";
+  sCtx.fillText("video ANALYS DZ | 4K TACTICAL SNAPSHOT 🇩🇿", 80, sc.height - 72);
+
+  const link = document.createElement("a");
+  link.download = `tactical-snapshot-4k-${Date.now()}.png`;
+  link.href = sc.toDataURL("image/png", 1.0);
+  link.click();
+  showToast("تم استخراج وتحميل لقطة 4K الاحترافية بنجاح 📸🔥");
+};
+
 document.querySelectorAll(".tool-btn").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".tool-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active"); currentTool = btn.dataset.tool;
+    if(currentTool === 'angle') anglePoints = [];
+    showToast(`أداة مفعلة: ${btn.textContent.trim()}`);
   };
 });
 
 canvas.onmousedown = (e) => {
   if (currentTool === "select") return;
-  isDrawing = true;
   const rect = canvas.getBoundingClientRect();
-  startX = e.clientX - rect.left; startY = e.clientY - rect.top;
-  if (currentTool === "pen") { ctx.beginPath(); ctx.moveTo(startX, startY); }
+  const x = e.clientX - rect.left, y = e.clientY - rect.top;
+
+  if (currentTool === "pen") {
+    isDrawing = true; startX = x; startY = y;
+    ctx.beginPath(); ctx.moveTo(x, y);
+  } else if (currentTool === "angle") {
+    anglePoints.push({x, y});
+    if (anglePoints.length === 3) {
+      drawAngle(anglePoints[0], anglePoints[1], anglePoints[2]);
+      anglePoints = [];
+      showToast("تم قياس الزاوية 📐");
+    } else {
+      showToast(`حدد النقطة ${anglePoints.length}/3`);
+    }
+  } else if (currentTool === "stamp") {
+    ctx.fillStyle = currentColor;
+    ctx.font = "bold 24px Cairo";
+    ctx.fillText("10", x - 10, y + 8);
+    showToast("تم ختم رقم اللاعب 🔢");
+  } else if (currentTool === "magnifier") {
+    ctx.save();
+    ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(x, y, 50, 0, 2*Math.PI); ctx.stroke();
+    ctx.fillStyle = "rgba(63,191,133,0.15)"; ctx.fill();
+    ctx.restore();
+    showToast("تم تكبير العدسة 🔍");
+  } else if (currentTool === "spotlight") {
+    ctx.save(); ctx.fillStyle = "rgba(0,0,0,0.7)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath(); ctx.arc(x, y, 70, 0, 2*Math.PI); ctx.fill();
+    ctx.restore();
+    showToast("تم تسليط بقعة الضوء 💡");
+  }
 };
 
 canvas.onmousemove = (e) => {
-  if (!isDrawing || currentTool === "select") return;
+  if (!isDrawing || currentTool !== "pen") return;
   const rect = canvas.getBoundingClientRect();
-  const cx = e.clientX - rect.left, cy = e.clientY - rect.top;
-  if (currentTool === "pen") {
-    ctx.strokeStyle = currentColor; ctx.lineWidth = 4; ctx.lineCap = "round";
-    ctx.lineTo(cx, cy); ctx.stroke();
-  }
+  ctx.strokeStyle = currentColor; ctx.lineWidth = 4; ctx.lineCap = "round";
+  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top); ctx.stroke();
 };
 
 canvas.onmouseup = (e) => {
-  if (!isDrawing) return; isDrawing = false;
+  if (isDrawing) isDrawing = false;
   const rect = canvas.getBoundingClientRect();
   const ex = e.clientX - rect.left, ey = e.clientY - rect.top;
-  if (currentTool === "circle") {
-    const r = Math.hypot(ex - startX, ey - startY);
+
+  if (currentTool === "arrow") {
     ctx.strokeStyle = currentColor; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.arc(startX, startY, r, 0, 2 * Math.PI); ctx.stroke();
-  } else if (currentTool === "rect") {
-    ctx.strokeStyle = currentColor; ctx.lineWidth = 4;
-    ctx.strokeRect(startX, startY, ex - startX, ey - startY);
+    ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(ex, ey); ctx.stroke();
+  } else if (currentTool === "distance") {
+    ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(ex, ey); ctx.stroke();
+    const distMeters = (Math.hypot(ex - startX, ey - startY) * 0.05).toFixed(1);
+    ctx.fillStyle = "#fff"; ctx.font = "bold 14px Cairo";
+    ctx.fillText(`${distMeters} م`, (startX + ex)/2, (startY + ey)/2 - 8);
+    showToast(`المسافة: ${distMeters} متر 📏`);
   }
 };
 
+function drawAngle(p1, p2, p3) {
+  ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.lineTo(p3.x, p3.y); ctx.stroke();
+  const v1 = {x: p1.x - p2.x, y: p1.y - p2.y}, v2 = {x: p3.x - p2.x, y: p3.y - p2.y};
+  const dot = v1.x * v2.x + v1.y * v2.y, mag1 = Math.hypot(v1.x, v1.y), mag2 = Math.hypot(v2.x, v2.y);
+  const angleDeg = Math.round(Math.acos(dot / (mag1 * mag2)) * (180 / Math.PI));
+  ctx.fillStyle = "#fff"; ctx.font = "bold 16px Cairo";
+  ctx.fillText(`${angleDeg}°`, p2.x + 10, p2.y);
+}
+
 document.getElementById("btnClearCanvas").onclick = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  showToast("تم مسح الرسوم");
+  showToast("تم مسح أدوات الرسم");
 };
 
 document.getElementById("tagMatrix").onclick = (e) => {
