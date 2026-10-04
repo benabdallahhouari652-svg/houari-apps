@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EA SPORTS FIFA 3D | لعبة حارس المرمى بأسلوب الفيفا 🎮⚽</title>
-<meta name="description" content="محاكي حراسة المرمى ثلاثي الأبعاد 3D بأسلوب FIFA و EA SPORTS FC، رسوميات ملعب احترافية وهتافات الجماهير.">
+<title>DZ SOCCER 3D | لعبة حارس المرمى ثلاثية الأبعاد 🎮⚽</title>
+<meta name="description" content="محاكي حراسة المرمى ثلاثي الأبعاد 3D، رسوميات ملعب احترافية وتحدي تصديات ركلات الجزاء.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -15,12 +15,12 @@
 
 <style>
 :root {
-  --fifa-dark: #070e17;
-  --fifa-gold: #f59e0b;
-  --fifa-green: #10b981;
-  --fifa-red: #ef4444;
-  --fifa-card: #0f172a;
-  --fifa-border: #1e293b;
+  --app-dark: #070e17;
+  --app-gold: #f59e0b;
+  --app-green: #10b981;
+  --app-red: #ef4444;
+  --app-card: #0f172a;
+  --app-border: #1e293b;
   box-sizing: border-box;
 }
 
@@ -28,7 +28,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: var(--fifa-dark);
+  background: var(--app-dark);
   color: #fff;
   font-family: 'Cairo', system-ui, sans-serif;
   text-align: center;
@@ -42,10 +42,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid var(--fifa-gold);
+  border-bottom: 3px solid var(--app-gold);
   box-shadow: 0 4px 15px rgba(0,0,0,0.6);
 }
-.fifa-logo {
+.app-logo {
   font-weight: 900;
   font-size: 1.15rem;
   letter-spacing: 0.5px;
@@ -53,8 +53,8 @@ header {
   align-items: center;
   gap: 8px;
 }
-.fifa-badge {
-  background: var(--fifa-gold);
+.app-badge {
+  background: var(--app-gold);
   color: #000;
   padding: 2px 8px;
   border-radius: 6px;
@@ -68,7 +68,7 @@ main {
   padding: 14px;
 }
 
-.fifa-hud {
+.app-hud {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -80,17 +80,17 @@ main {
   margin-bottom: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.7);
 }
-.fifa-hud-item {
+.app-hud-item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.fifa-hud-val {
+.app-hud-val {
   font-size: 1.3rem;
   font-weight: 900;
-  color: var(--fifa-gold);
+  color: var(--app-gold);
 }
-.fifa-hud-lbl {
+.app-hud-lbl {
   font-size: 0.75rem;
   color: #94a3b8;
   font-weight: 700;
@@ -99,7 +99,7 @@ main {
 .game-3d-container {
   width: 100%;
   height: 500px;
-  border: 3px solid var(--fifa-gold);
+  border: 3px solid var(--app-gold);
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -113,13 +113,13 @@ main {
   display: block;
 }
 
-.fifa-aim-target {
+.app-aim-target {
   position: absolute;
   width: 44px;
   height: 44px;
-  border: 3px solid var(--fifa-gold);
+  border: 3px solid var(--app-gold);
   border-radius: 50%;
-  box-shadow: 0 0 15px var(--fifa-gold);
+  box-shadow: 0 0 15px var(--app-gold);
   pointer-events: none;
   transform: translate(-50%, -50%);
   display: none;
@@ -131,7 +131,7 @@ main {
   100% { transform: translate(-50%, -50%) scale(1.15); }
 }
 
-.btn-fifa {
+.btn-app {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: #000;
   border: none;
@@ -145,7 +145,7 @@ main {
   box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-fifa:hover {
+.btn-app:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
 }
@@ -174,34 +174,34 @@ main {
 <body>
 
 <header>
-  <div class="fifa-logo">
-    🎮 EA SPORTS FC <span class="fifa-badge">FIFA 3D</span>
+  <div class="app-logo">
+    🎮 DZ SOCCER <span class="app-badge">3D SIMULATOR</span>
   </div>
   <a href="index.html" style="color:#fff; font-weight:700; text-decoration:none;">← المتجر</a>
 </header>
 
 <main>
-  <div class="fifa-hud">
-    <div class="fifa-hud-item">
-      <span class="fifa-hud-lbl">النقاط (SCORE)</span>
-      <span class="fifa-hud-val" id="scoreVal">0</span>
+  <div class="app-hud">
+    <div class="app-hud-item">
+      <span class="app-hud-lbl">النقاط (SCORE)</span>
+      <span class="app-hud-val" id="scoreVal">0</span>
     </div>
-    <div class="fifa-hud-item">
-      <span class="fifa-hud-lbl">المحاولات (LIVES)</span>
-      <span class="fifa-hud-val" id="livesVal" style="color:var(--fifa-red);">💖💖💖</span>
+    <div class="app-hud-item">
+      <span class="app-hud-lbl">المحاولات (LIVES)</span>
+      <span class="app-hud-val" id="livesVal" style="color:var(--app-red);">💖💖💖</span>
     </div>
-    <div class="fifa-hud-item">
-      <span class="fifa-hud-lbl">الأعلى (BEST)</span>
-      <span class="fifa-hud-val" id="highVal">0</span>
+    <div class="app-hud-item">
+      <span class="app-hud-lbl">الأعلى (BEST)</span>
+      <span class="app-hud-val" id="highVal">0</span>
     </div>
   </div>
 
   <div class="game-3d-container" id="gameContainer">
-    <div class="fifa-aim-target" id="fifaAim"></div>
+    <div class="app-aim-target" id="appAim"></div>
     <div id="canvas3d"></div>
   </div>
 
-  <button class="btn-fifa" id="btnStartFIFA">⚽ بدء ركلات الجزاء 3D (FIFA STYLE)</button>
+  <button class="btn-app" id="btnStartGame">⚽ بدء ركلات الجزاء ثلاثية الأبعاد 3D</button>
 </main>
 
 <div class="toast" id="toast"></div>
@@ -212,7 +212,7 @@ let ballMesh, gloveMesh, goalPostGroup, pitchMesh;
 let isPlaying = false;
 let score = 0;
 let lives = 3;
-let highScore = localStorage.getItem("gk_game_fifa_highscore") || 0;
+let highScore = localStorage.getItem("gk_game_3d_highscore") || 0;
 
 let ballVelocity = { x: 0, y: 0, z: 0 };
 let ballPos = { x: 0, y: 0.3, z: -18 };
@@ -227,7 +227,7 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove("show"), 2500);
 }
 
-function playFifaSound(type) {
+function playSound(type) {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const osc = ctx.createOscillator();
@@ -251,7 +251,7 @@ function playFifaSound(type) {
   } catch(e) {}
 }
 
-function initFIFA3D() {
+function init3D() {
   const container = document.getElementById("canvas3d");
   const w = container.clientWidth;
   const h = container.clientHeight;
@@ -348,7 +348,7 @@ function onTouchMove(e) {
   gloveMesh.position.y = Math.max(0.4, (y + 1) * 1.6);
 }
 
-function resetFifaShot() {
+function resetShot() {
   ballPos = { x: 0, y: 0.3, z: -18 };
   targetAim.x = (Math.random() - 0.5) * 6.5;
   targetAim.y = 0.5 + Math.random() * 1.8;
@@ -360,7 +360,7 @@ function resetFifaShot() {
     z: speed
   };
 
-  const aimElement = document.getElementById("fifaAim");
+  const aimElement = document.getElementById("appAim");
   aimElement.style.display = "block";
   aimElement.style.left = `${(targetAim.x / 4.2 + 0.5) * 100}%`;
   aimElement.style.top = `${(1 - targetAim.y / 2.5) * 100}%`;
@@ -383,26 +383,26 @@ function updateGameLogic() {
       document.getElementById("scoreVal").textContent = score;
       if (score > highScore) {
         highScore = score;
-        localStorage.setItem("gk_game_fifa_highscore", highScore);
+        localStorage.setItem("gk_game_3d_highscore", highScore);
         document.getElementById("highVal").textContent = highScore;
       }
-      playFifaSound('save');
-      showToast("🧤 تصدي خيالي بأسلوب الفيفا! +1");
-      resetFifaShot();
+      playSound('save');
+      showToast("🧤 تصدي خيالي رائع! +1");
+      resetShot();
       return;
     }
   }
 
   if (ballPos.z > 2.2) {
-    playFifaSound('goal');
+    playSound('goal');
     lives--;
     updateLivesDisplay();
     if (lives <= 0) {
       isPlaying = false;
-      showToast(`انتهت المباراة! مجموع نقاطك بالـ FIFA: ${score}`);
+      showToast(`انتهت اللعبة! مجموع نقاطك: ${score}`);
     } else {
       showToast("⚽ هدف في المرمى!");
-      resetFifaShot();
+      resetShot();
     }
   }
 }
@@ -419,18 +419,18 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-document.getElementById("btnStartFIFA").onclick = () => {
+document.getElementById("btnStartGame").onclick = () => {
   score = 0;
   lives = 3;
   isPlaying = true;
   document.getElementById("scoreVal").textContent = 0;
   updateLivesDisplay();
-  resetFifaShot();
-  showToast("بدأت ركلات الجزاء بأسلوب EA SPORTS FIFA 3D! ⚽");
+  resetShot();
+  showToast("بدأت ركلات الجزاء ثلاثية الأبعاد! ⚽");
 };
 
 if (typeof THREE !== "undefined") {
-  initFIFA3D();
+  init3D();
 }
 </script>
 </body>
