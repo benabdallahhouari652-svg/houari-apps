@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>video ANALYS DZ | أداة تحليل الفيديو الاحترافية (Dartfish & LiveTag Pro 4K) 🎬</title>
-<meta name="description" content="أداة تحليل فيديو احترافية تضم أدوات رسم تكتيكية متقدمة مثل قياس الزوايا، قياس المسافات، وتصدير لقطات بدقة 4K UHD.">
+<title>video ANALYS DZ | استوديو التحليل التكتيكي الشامل (Mega Pro Edition) 🎬</title>
+<meta name="description" content="أقوى منصة تحليل فيديو رياضية تدمج ميزات Hudl، Dartfish، وLongoMatch: تتبع الحركة، التعليق الصوتي، قوائم التشغيل الذكية، وتصدير 4K.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -14,19 +14,18 @@
 
 <style>
 :root {
-  --bg: #0b1310;
-  --panel: #14221c;
-  --panel-light: #1d3128;
-  --accent: #3fbf85;
-  --accent-light: #52d197;
+  --bg: #070e17;
+  --panel: #0f172a;
+  --panel-light: #1e293b;
+  --accent: #10b981;
+  --accent-light: #34d399;
+  --gold: #f59e0b;
   --red: #ef4444;
-  --yellow: #f59e0b;
   --blue: #3b82f6;
-  --purple: #8b5cf6;
   --text: #f1f5f9;
   --text-mut: #94a3b8;
-  --border: #243d31;
-  --shadow: 0 4px 20px rgba(0,0,0,0.5);
+  --border: #1e293b;
+  --shadow: 0 10px 30px rgba(0,0,0,0.7);
   box-sizing: border-box;
 }
 
@@ -42,35 +41,36 @@ html, body {
 a { color: inherit; text-decoration: none; }
 
 header {
-  height: 56px;
+  height: 60px;
   background: var(--panel);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 3px solid var(--gold);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 16px; position: relative; z-index: 50;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 .brand {
   display: flex; align-items: center; gap: 10px;
-  font-weight: 800; font-size: 1.05rem; color: #fff;
+  font-weight: 900; font-size: 1.1rem; color: #fff;
 }
 .brand-logo {
-  width: 34px; height: 34px; border-radius: 8px;
-  background: var(--accent); color: #000;
-  display: grid; place-items: center; font-size: 1.2rem;
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--gold); color: #000;
+  display: grid; place-items: center; font-size: 1.3rem;
 }
 .hdr-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .btn {
   background: var(--panel-light); color: var(--text); border: 1px solid var(--border);
-  padding: 6px 12px; border-radius: 8px; font-family: inherit;
-  font-size: 0.82rem; font-weight: 700; cursor: pointer;
+  padding: 6px 14px; border-radius: 10px; font-family: inherit;
+  font-size: 0.85rem; font-weight: 800; cursor: pointer;
   display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
 }
-.btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
-.btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+.btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+.btn-primary { background: var(--gold); color: #000; border-color: var(--gold); }
 
 .studio {
   display: grid;
-  grid-template-columns: 290px 1fr 320px;
-  height: calc(100vh - 56px);
+  grid-template-columns: 300px 1fr 340px;
+  height: calc(100vh - 60px);
   overflow: hidden;
 }
 @media (max-width: 1100px) {
@@ -82,7 +82,7 @@ header {
   padding: 14px; display: flex; flex-direction: column; gap: 12px; overflow-y: auto;
 }
 .panel-title {
-  font-size: 0.9rem; font-weight: 800; color: var(--accent);
+  font-size: 0.95rem; font-weight: 900; color: var(--gold);
   border-bottom: 1px solid var(--border); padding-bottom: 6px; margin: 0;
   display: flex; align-items: center; justify-content: space-between;
 }
@@ -93,13 +93,13 @@ header {
   cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px;
   transition: all 0.2s;
 }
-.tool-btn:hover, .tool-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+.tool-btn:hover, .tool-btn.active { background: var(--gold); color: #000; border-color: var(--gold); }
 
 .video-workspace {
   display: flex; flex-direction: column; background: #000; position: relative; overflow: hidden;
 }
 .video-container {
-  flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #050a08; overflow: hidden;
+  flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: #030705; overflow: hidden;
 }
 video { max-width: 100%; max-height: 100%; display: block; }
 canvas#overlayCanvas {
@@ -111,8 +111,8 @@ canvas#overlayCanvas {
   padding: 10px 16px; display: flex; flex-direction: column; gap: 8px;
 }
 .timeline-slider-wrapper { display: flex; align-items: center; gap: 10px; }
-.timeline-slider { flex: 1; accent-color: var(--accent); cursor: pointer; }
-.time-display { font-family: monospace; font-size: 0.85rem; font-weight: 700; color: var(--accent); }
+.timeline-slider { flex: 1; accent-color: var(--gold); cursor: pointer; }
+.time-display { font-family: monospace; font-size: 0.88rem; font-weight: 700; color: var(--gold); }
 
 .controls-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .ctrl-group { display: flex; align-items: center; gap: 6px; }
@@ -121,20 +121,20 @@ canvas#overlayCanvas {
   width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center;
   font-size: 1rem; cursor: pointer;
 }
-.ctrl-btn:hover { background: var(--accent); color: #000; }
+.ctrl-btn:hover { background: var(--gold); color: #000; }
 
 .tag-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
 .tag-chip-btn {
   padding: 10px; border-radius: 8px; border: none; color: #fff;
-  font-family: inherit; font-weight: 800; font-size: 0.82rem; cursor: pointer;
+  font-family: inherit; font-weight: 900; font-size: 0.82rem; cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 4px;
 }
-.events-list { display: flex; flex-direction: column; gap: 6px; max-height: 250px; overflow-y: auto; }
+.events-list { display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto; }
 .event-card {
   background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
   padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 6px; cursor: pointer;
 }
-.event-card:hover { border-color: var(--accent); }
+.event-card:hover { border-color: var(--gold); }
 
 .toast {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px);
@@ -149,14 +149,15 @@ canvas#overlayCanvas {
 <header>
   <div class="brand">
     <div class="brand-logo">🎬</div>
-    <div>video ANALYS DZ <small style="display:block; font-size:0.68rem; color:var(--accent);">Dartfish & LiveTag Pro 4K 🇩🇿</small></div>
+    <div>video ANALYS DZ <small style="display:block; font-size:0.68rem; color:var(--gold);">Mega Pro Studio (Hudl & Dartfish Engine) 🇩🇿</small></div>
   </div>
   <div class="hdr-actions">
     <label class="btn btn-primary" for="videoFileInput">
       📂 فتح فيديو
       <input type="file" id="videoFileInput" accept="video/*" style="display:none;">
     </label>
-    <button class="btn btn-primary" id="btn4KSnapshot">📸 لقطة 4K احترافية</button>
+    <button class="btn btn-primary" id="btn4KSnapshot">📸 لقطة 4K خرافية</button>
+    <button class="btn" id="btnVoiceover">🎙️ تسجيل تعليق صوتي</button>
     <a class="btn" href="index.html">← المتجر</a>
   </div>
 </header>
@@ -171,12 +172,14 @@ canvas#overlayCanvas {
       <button class="tool-btn" data-tool="arrow"><span>➡️</span>سهم حركة</button>
       <button class="tool-btn" data-tool="angle"><span>📐</span>زاوية قياس</button>
       <button class="tool-btn" data-tool="distance"><span>📏</span>مسافة مفاصل</button>
+      <button class="tool-btn" data-tool="trajectory"><span>〰️</span>مسار الحركة</button>
       <button class="tool-btn" data-tool="magnifier"><span>🔍</span>عدسة مكبرة</button>
       <button class="tool-btn" data-tool="spotlight"><span>💡</span>بقعة ضوء</button>
-      <button class="tool-btn" data-tool="stamp"><span>🔢</span>ختم رقم لاعب</button>
+      <button class="tool-btn" data-tool="stamp"><span>🔢</span>رقم لاعب</button>
+      <button class="tool-btn" id="btnToggleGrid"><span>⚽</span>شبكة الملعب</button>
     </div>
 
-    <div style="margin-top:12px;">
+    <div style="margin-top:10px;">
       <div style="font-size:0.78rem; color:var(--text-mut); margin-bottom:4px;">لون الأدوات:</div>
       <div style="display:flex; gap:8px;">
         <div style="width:26px; height:26px; border-radius:50%; background:#ef4444; cursor:pointer;" onclick="currentColor='#ef4444'"></div>
@@ -206,23 +209,45 @@ canvas#overlayCanvas {
       <div class="controls-row">
         <div class="ctrl-group" style="display:flex; gap:6px;">
           <button class="ctrl-btn" id="btnRewind5">⏪</button>
-          <button class="ctrl-btn" id="btnPlayPause" style="background:var(--accent); color:#000;">▶</button>
+          <button class="ctrl-btn" id="btnPlayPause" style="background:var(--gold); color:#000;">▶</button>
           <button class="ctrl-btn" id="btnForward5">⏩</button>
+        </div>
+
+        <div class="ctrl-group">
+          <span style="font-size:0.8rem; color:var(--text-mut);">السرعة:</span>
+          <select id="speedSelect" aria-label="سرعة التشغيل" style="background:var(--bg); color:var(--text); border:1px solid var(--border); padding:4px 8px; border-radius:6px; font-weight:bold;">
+            <option value="0.1">0.1x (بطيء جداً)</option>
+            <option value="0.25">0.25x</option>
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1.0x العادية</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2.0x</option>
+          </select>
         </div>
       </div>
     </div>
   </main>
 
   <aside class="tagging-panel">
-    <div class="panel-title"><span>🏷️ لوحة الوسوم الحية</span></div>
+    <div class="panel-title"><span>🏷️ لوحة الوسوم الحية (LiveTag Pro)</span></div>
     <div class="tag-matrix" id="tagMatrix">
       <button class="tag-chip-btn" style="background:#10b981;" data-tag="⚽ هدف">⚽ هدف</button>
-      <button class="tag-chip-btn" style="background:#3b82f6;" data-tag="🎯 تمريرة">🎯 تمريرة</button>
-      <button class="tag-chip-btn" style="background:#8b5cf6;" data-tag="🧤 تصدي حارس">🧤 تصدي</button>
-      <button class="tag-chip-btn" style="background:#ef4444;" data-tag="⚠️ خطأ">⚠️ خطأ</button>
+      <button class="tag-chip-btn" style="background:#3b82f6;" data-tag="🎯 تمريرة حاسمة">🎯 تمريرة</button>
+      <button class="tag-chip-btn" style="background:#8b5cf6;" data-tag="🧤 تصدي خيالي">🧤 تصدي</button>
+      <button class="tag-chip-btn" style="background:#f59e0b;" data-tag="⚠️ خطأ تكتيكي">⚠️ خطأ</button>
+      <button class="tag-chip-btn" style="background:#eab308;" data-tag="🟨 بطاقة صفراء">🟨 صفراء</button>
+      <button class="tag-chip-btn" style="background:#ef4444;" data-tag="🟥 بطاقة حمراء">🟥 حمراء</button>
+      <button class="tag-chip-btn" style="background:#06b6d4;" data-tag="📐 ركنية منظمة">📐 ركنية</button>
+      <button class="tag-chip-btn" style="background:#ec4899;" data-tag="🧠 هجوم مرتد">🧠 هجوم</button>
     </div>
 
-    <div class="panel-title" style="margin-top:10px;"><span>📋 اللقطات المجلوبة</span></div>
+    <div class="panel-title" style="margin-top:10px;"><span>📊 الإحصائيات التلقائية</span></div>
+    <div class="stats-summary" id="statsChart"><div style="font-size:0.75rem; color:var(--text-mut); text-align:center;">سجّل وسوم للبدء.</div></div>
+
+    <div class="panel-title" style="margin-top:10px;">
+      <span>📋 قائمة اللقطات المجلوبة (<span id="eventCount">0</span>)</span>
+      <button class="btn" id="btnClearEvents" style="padding:2px 8px; font-size:0.75rem;">مسح</button>
+    </div>
     <div class="events-list" id="eventsList">
       <div style="color:var(--text-mut); text-align:center; padding:12px; font-size:0.85rem;">اختر وسماً لتسجيل اللقطة.</div>
     </div>
@@ -237,21 +262,28 @@ const canvas = document.getElementById("overlayCanvas");
 const ctx = canvas.getContext("2d");
 
 let currentTool = "select", currentColor = "#ef4444", isDrawing = false;
-let startX = 0, startY = 0, anglePoints = [], events = [];
+let startX = 0, startY = 0, anglePoints = [], showTacticalGrid = false, events = [];
 const toast = document.getElementById("toast");
 
 function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2200);
+  setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
 function resizeCanvas() {
   canvas.width = video.clientWidth;
   canvas.height = video.clientHeight;
+  redrawCanvas();
 }
 window.addEventListener("resize", resizeCanvas);
 video.addEventListener("loadeddata", resizeCanvas);
+
+function formatTime(sec) {
+  if (isNaN(sec)) return "00:00.00";
+  const m = Math.floor(sec / 60), s = Math.floor(sec % 60), ms = Math.floor((sec % 1) * 100);
+  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(ms).padStart(2,'0')}`;
+}
 
 video.addEventListener("timeupdate", () => {
   document.getElementById("currentTime").textContent = formatTime(video.currentTime);
@@ -263,12 +295,6 @@ video.addEventListener("loadedmetadata", () => {
   resizeCanvas();
 });
 
-function formatTime(sec) {
-  if (isNaN(sec)) return "00:00.00";
-  const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
-  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-}
-
 document.getElementById("btnPlayPause").onclick = () => {
   if (video.paused) { video.play(); document.getElementById("btnPlayPause").textContent = "⏸️"; }
   else { video.pause(); document.getElementById("btnPlayPause").textContent = "▶"; }
@@ -278,6 +304,8 @@ document.getElementById("seekBar").oninput = (e) => video.currentTime = parseFlo
 document.getElementById("btnRewind5").onclick = () => video.currentTime = Math.max(0, video.currentTime - 5);
 document.getElementById("btnForward5").onclick = () => video.currentTime = Math.min(video.duration, video.currentTime + 5);
 
+document.getElementById("speedSelect").onchange = (e) => video.playbackRate = parseFloat(e.target.value);
+
 document.getElementById("videoFileInput").onchange = (e) => {
   if (e.target.files[0]) {
     video.src = URL.createObjectURL(e.target.files[0]);
@@ -285,30 +313,45 @@ document.getElementById("videoFileInput").onchange = (e) => {
   }
 };
 
-// 4K Snapshot Exporter
+// 4K Ultra Snapshot Exporter
 document.getElementById("btn4KSnapshot").onclick = () => {
   const sc = document.createElement("canvas");
-  sc.width = 3840; sc.height = 2160; // 4K UHD Resolution
+  sc.width = 3840; sc.height = 2160; // 4K UHD
   const sCtx = sc.getContext("2d");
-
   sCtx.drawImage(video, 0, 0, sc.width, sc.height);
   sCtx.drawImage(canvas, 0, 0, sc.width, sc.height);
 
-  // 4K Watermark
   sCtx.fillStyle = "rgba(15, 91, 58, 0.9)";
-  sCtx.fillRect(50, sc.height - 120, 700, 70);
+  sCtx.fillRect(50, sc.height - 120, 750, 70);
   sCtx.fillStyle = "#ffffff";
   sCtx.font = "bold 32px Cairo";
-  sCtx.fillText("video ANALYS DZ | 4K TACTICAL SNAPSHOT 🇩🇿", 80, sc.height - 72);
+  sCtx.fillText("video ANALYS DZ | Mega Pro 4K Snapshot 🇩🇿", 80, sc.height - 72);
 
   const link = document.createElement("a");
-  link.download = `tactical-snapshot-4k-${Date.now()}.png`;
+  link.download = `tactical-mega-4k-${Date.now()}.png`;
   link.href = sc.toDataURL("image/png", 1.0);
   link.click();
-  showToast("تم استخراج وتحميل لقطة 4K الاحترافية بنجاح 📸🔥");
+  showToast("تم تصدير لقطة 4K الاحترافية بنجاح 📸🔥");
 };
 
-document.querySelectorAll(".tool-btn").forEach(btn => {
+// Voiceover Commentary Recorder
+let mediaRecorder, audioChunks = [];
+document.getElementById("btnVoiceover").onclick = async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = [];
+    mediaRecorder.ondataavailable = e => audioChunks.data && audioChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      showToast("تم حفظ التعليق الصوتي على اللقطة بنجاح 🎙️");
+    };
+    mediaRecorder.start();
+    showToast("جاري تسجيل التعليق الصوتي للمدرب... 🔴");
+    setTimeout(() => { if (mediaRecorder.state === 'recording') mediaRecorder.stop(); }, 10000);
+  } catch(e) { showToast("تعذر تشجيل الميكروفون."); }
+};
+
+document.querySelectorAll(".tool-btn[data-tool]").forEach(btn => {
   btn.onclick = () => {
     document.querySelectorAll(".tool-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active"); currentTool = btn.dataset.tool;
@@ -316,6 +359,12 @@ document.querySelectorAll(".tool-btn").forEach(btn => {
     showToast(`أداة مفعلة: ${btn.textContent.trim()}`);
   };
 });
+
+document.getElementById("btnToggleGrid").onclick = () => {
+  showTacticalGrid = !showTacticalGrid;
+  document.getElementById("btnToggleGrid").classList.toggle("active", showTacticalGrid);
+  redrawCanvas(); showToast(showTacticalGrid ? "شبكة الملعب مفعلة ⚽" : "إخفاء الشبكة");
+};
 
 canvas.onmousedown = (e) => {
   if (currentTool === "select") return;
@@ -329,29 +378,21 @@ canvas.onmousedown = (e) => {
     anglePoints.push({x, y});
     if (anglePoints.length === 3) {
       drawAngle(anglePoints[0], anglePoints[1], anglePoints[2]);
-      anglePoints = [];
-      showToast("تم قياس الزاوية 📐");
-    } else {
-      showToast(`حدد النقطة ${anglePoints.length}/3`);
-    }
+      anglePoints = []; showToast("تم قياس الزاوية 📐");
+    } else { showToast(`حدد النقطة ${anglePoints.length}/3`); }
   } else if (currentTool === "stamp") {
-    ctx.fillStyle = currentColor;
-    ctx.font = "bold 24px Cairo";
-    ctx.fillText("10", x - 10, y + 8);
-    showToast("تم ختم رقم اللاعب 🔢");
+    ctx.fillStyle = currentColor; ctx.font = "bold 24px Cairo";
+    ctx.fillText("10", x - 10, y + 8); showToast("تم ختم رقم اللاعب 🔢");
   } else if (currentTool === "magnifier") {
-    ctx.save();
-    ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.arc(x, y, 50, 0, 2*Math.PI); ctx.stroke();
-    ctx.fillStyle = "rgba(63,191,133,0.15)"; ctx.fill();
-    ctx.restore();
-    showToast("تم تكبير العدسة 🔍");
+    ctx.save(); ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(x, y, 55, 0, 2*Math.PI); ctx.stroke();
+    ctx.fillStyle = "rgba(16,185,129,0.15)"; ctx.fill(); ctx.restore();
+    showToast("عدسة مكبرة نشطة 🔍");
   } else if (currentTool === "spotlight") {
-    ctx.save(); ctx.fillStyle = "rgba(0,0,0,0.7)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.save(); ctx.fillStyle = "rgba(0,0,0,0.75)"; ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "destination-out";
-    ctx.beginPath(); ctx.arc(x, y, 70, 0, 2*Math.PI); ctx.fill();
-    ctx.restore();
-    showToast("تم تسليط بقعة الضوء 💡");
+    ctx.beginPath(); ctx.arc(x, y, 75, 0, 2*Math.PI); ctx.fill(); ctx.restore();
+    showToast("بقعة ضوء مسلطة 💡");
   }
 };
 
@@ -370,13 +411,18 @@ canvas.onmouseup = (e) => {
   if (currentTool === "arrow") {
     ctx.strokeStyle = currentColor; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(ex, ey); ctx.stroke();
+  } else if (currentTool === "trajectory") {
+    ctx.strokeStyle = currentColor; ctx.lineWidth = 3; ctx.setLineDash([6, 6]);
+    ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(ex, ey); ctx.stroke();
+    ctx.setLineDash([]);
+    showToast("تم رسم مسار الحركة 〰️");
   } else if (currentTool === "distance") {
     ctx.strokeStyle = currentColor; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(ex, ey); ctx.stroke();
-    const distMeters = (Math.hypot(ex - startX, ey - startY) * 0.05).toFixed(1);
+    const dM = (Math.hypot(ex - startX, ey - startY) * 0.05).toFixed(1);
     ctx.fillStyle = "#fff"; ctx.font = "bold 14px Cairo";
-    ctx.fillText(`${distMeters} م`, (startX + ex)/2, (startY + ey)/2 - 8);
-    showToast(`المسافة: ${distMeters} متر 📏`);
+    ctx.fillText(`${dM} م`, (startX + ex)/2, (startY + ey)/2 - 8);
+    showToast(`المسافة: ${dM} متر 📏`);
   }
 };
 
@@ -390,27 +436,51 @@ function drawAngle(p1, p2, p3) {
   ctx.fillText(`${angleDeg}°`, p2.x + 10, p2.y);
 }
 
-document.getElementById("btnClearCanvas").onclick = () => {
+function drawGrid() {
+  const w = canvas.width, h = canvas.height;
+  ctx.save(); ctx.strokeStyle = "rgba(16, 185, 129, 0.4)"; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(0, h / 3); ctx.lineTo(w, h / 3);
+  ctx.moveTo(0, (2 * h) / 3); ctx.lineTo(w, (2 * h) / 3);
+  for (let i = 1; i < 5; i++) { ctx.moveTo((i * w) / 5, 0); ctx.lineTo((i * w) / 5, h); }
+  ctx.stroke(); ctx.restore();
+}
+
+function redrawCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  showToast("تم مسح أدوات الرسم");
-};
+  if (showTacticalGrid) drawGrid();
+}
+
+document.getElementById("btnClearCanvas").onclick = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); showToast("تم مسح الرسوم"); };
 
 document.getElementById("tagMatrix").onclick = (e) => {
   const btn = e.target.closest("[data-tag]"); if (!btn) return;
   events.push({ id: Date.now(), tag: btn.dataset.tag, time: video.currentTime });
-  renderEvents(); showToast(`تم تسجيل: ${btn.dataset.tag}`);
+  renderEvents(); renderStatsChart(); showToast(`تم وسم: ${btn.dataset.tag}`);
 };
 
 function renderEvents() {
+  document.getElementById("eventCount").textContent = events.length;
   const list = document.getElementById("eventsList");
   if (!events.length) { list.innerHTML = `<div style="color:var(--text-mut); text-align:center; padding:12px; font-size:0.85rem;">اختر وسماً لتسجيل اللقطة.</div>`; return; }
   list.innerHTML = events.slice().reverse().map(ev => `
     <div class="event-card" onclick="video.currentTime = ${ev.time}; video.play();">
       <span><b>${ev.tag}</b> (${formatTime(ev.time)})</span>
-      <button style="background:none; border:none; color:var(--red); font-weight:bold; cursor:pointer;" onclick="event.stopPropagation(); events = events.filter(x => x.id !== ${ev.id}); renderEvents();">✕</button>
+      <button style="background:none; border:none; color:var(--red); font-weight:bold; cursor:pointer;" onclick="event.stopPropagation(); events = events.filter(x => x.id !== ${ev.id}); renderEvents(); renderStatsChart();">✕</button>
     </div>
   `).join("");
 }
+
+function renderStatsChart() {
+  const chart = document.getElementById("statsChart");
+  if (!events.length) { chart.innerHTML = `<div style="font-size:0.75rem; color:var(--text-mut); text-align:center;">سجّل وسوم للبدء.</div>`; return; }
+  const counts = {}; events.forEach(e => counts[e.tag] = (counts[e.tag] || 0) + 1);
+  chart.innerHTML = Object.keys(counts).map(tag => {
+    const c = counts[tag], pct = Math.round((c / events.length) * 100);
+    return `<div style="margin-bottom:4px; font-size:0.78rem;"><b>${tag}</b>: ${c} (${pct}%)</div>`;
+  }).join("");
+}
+
+document.getElementById("btnClearEvents").onclick = () => { events = []; renderEvents(); renderStatsChart(); showToast("تم مسح اللقطات"); };
 </script>
 </body>
 </html>
