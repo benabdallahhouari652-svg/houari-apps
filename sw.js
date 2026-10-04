@@ -1,4 +1,4 @@
-const CACHE_NAME = 'houari-apps-v6';
+const CACHE_NAME = 'houari-apps-v7';
 const ASSETS = [
   './',
   './index.html',
@@ -12,9 +12,11 @@ const ASSETS = [
   './sport-simulator.html',
   './training-bank.html',
   './ai-coach.html',
+  './qrcode-tool.html',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'
+  'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js'
 ];
 
 self.addEventListener('install', (event) => {
