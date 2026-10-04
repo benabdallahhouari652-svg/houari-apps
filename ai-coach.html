@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>مساعد الذكاء الاصطناعي التكتيكي | AI Coach Assistant 🤖⚽</title>
-<meta name="description" content="مساعد تكتيكي ذكي يقترح تمارين وحلول تدريبية فورية بناءً على وضعية الفريق وخصم المباراة.">
+<title>مساعد الذكاء الاصطناعي التكتيكي الاحترافي | AI Coach Assistant 🤖⚽</title>
+<meta name="description" content="مساعد تكتيكي ذكي يقترح تمارين وحلول تدريبية فورية بالصوت والنص للمدربين وحراس المرمى.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -103,7 +103,7 @@ h2 {
   background: rgba(15, 23, 42, 0.8);
   border: 1px solid var(--bd);
   border-radius: 14px;
-  height: 350px;
+  height: 380px;
   overflow-y: auto;
   padding: 16px;
   display: flex;
@@ -115,7 +115,7 @@ h2 {
 .chat-msg {
   padding: 12px 16px;
   border-radius: 12px;
-  max-width: 80%;
+  max-width: 85%;
   font-size: 0.92rem;
   line-height: 1.6;
 }
@@ -205,7 +205,7 @@ input[type="text"]:focus { outline: none; border-color: var(--go); }
 <header>
   <div class="header-bar">
     <div class="brand">
-      🤖 مساعد الذكاء الاصطناعي التكتيكي | AI Coach
+      🤖 مساعد الذكاء الاصطناعي التكتيكي الاحترافي | AI Coach
     </div>
     <a class="btn-hdr" href="index.html">← متجر التطبيقات</a>
   </div>
@@ -213,12 +213,12 @@ input[type="text"]:focus { outline: none; border-color: var(--go); }
 
 <main>
   <div class="card">
-    <h2>💬 اسأل مساعد المدرب الذكي</h2>
-    <p style="font-size:0.9rem; color:var(--mut); margin-top:0;">اطرح أي سؤال تكتيكي أو تدريبي، أو اختر أحد الأسئلة الجاهزة أدناه للحصول على تحليل فوري وتوصيات تدريبية:</p>
+    <h2>💬 اسأل مساعد المدرب الذكي (نص وصوت 🔊)</h2>
+    <p style="font-size:0.9rem; color:var(--mut); margin-top:0;">اطرح أي سؤال تكتيكي أو تدريبي، واستمع للإجابة صوتياً أو عبر النص لتحضير حصتك التدريبية باحترافية:</p>
 
     <div class="chat-box" id="chatBox">
       <div class="chat-msg ai">
-        أهلاً بك يا كوتش! أنا مساعدك الذكي المتخصص في تكتيكات كرة القدم وتدريب حراس المرمى. كيف يمكنني مساعدتك في تحضير الحصة التدريبية أو خطة المباراة القادمة؟
+        أهلاً بك يا كوتش! أنا مساعدك الذكي المتخصص في تكتيكات كرة القدم وتدريب حراس المرمى. كيف يمكنني مساعدتك اليوم في تحضير الحصة التدريبية أو خطة المباراة القادمة؟
       </div>
     </div>
 
@@ -232,6 +232,7 @@ input[type="text"]:focus { outline: none; border-color: var(--go); }
       <button class="prompt-chip" onclick="askPrompt('كيف أتعامل مع فريق يلعب بضغط عالي؟')">ضغط عالي</button>
       <button class="prompt-chip" onclick="askPrompt('ما هي أفضل تمارين لسرعة رد فعل حارس المرمى؟')">رد فعل الحارس</button>
       <button class="prompt-chip" onclick="askPrompt('كيف أنظم الدفاع في الركلات الركنية؟')">دفاع الركنيات</button>
+      <button class="prompt-chip" onclick="askPrompt('ما هي أفضل طريقة لبناء الهجمة من الخلف للحراس؟')">بناء الهجمة</button>
     </div>
   </div>
 </main>
@@ -249,14 +250,32 @@ function showToast(msg) {
 const aiKnowledge = {
   "ضغط عالي": "للتعامل مع فريق يطبق الضغط العالي (High Pressing): 1. اعتماد التمرير السريع من لمسة واحدة. 2. تحرك لاعبي الوسط لفتح زوايا تمرير خلف خط الضغط الأول. 3. استخدام التمريرات الطويلة نحو الأطراف لاستغلال المساحة خلف المدافعين المتقدمين.",
   "رد فعل الحارس": "لتطوير سرعة رد فعل حارس المرمى: 1. تمارين التسديدات المفاجئة من مسافات قصيرة (5-8 أمتار). 2. استخدام كرات ذات ألوان مختلفة يتطلب إبعادها بناءً على إشارة مدرب الحراس. 3. تدريبات التوافق العصبي العضلي والقفز المتتالي.",
-  "دفاع الركنيات": "لتنظيم دفاع الركنيات بكفاءة: 1. تطبيق دفاع مختلط (Mixed Defense): 3 لاعبين رقابة لصيقة على أخطر مهاجمي الخصم + 4 لاعبين في منطقة الزنار (Zone) أمام المرمى. 2. وضع لاعب عند القائم القريب لمنع الرأسيات القريبة. 3. إخراج الكرة نحو الأطراف بسرعة لبدء الهجمة المرتدة."
+  "دفاع الركنيات": "لتنظيم دفاع الركنيات بكفاءة: 1. تطبيق دفاع مختلط (Mixed Defense): 3 لاعبين رقابة لصيقة على أخطر مهاجمي الخصم + 4 لاعبين في منطقة الزنار (Zone) أمام المرمى. 2. وضع لاعب عند القائم القريب لمنع الرأسيات القريبة. 3. إخراج الكرة نحو الأطراف بسرعة لبدء الهجمة المرتدة.",
+  "بناء الهجمة": "لبناء الهجمة من الخلف للحراس: 1. تموضع الحارس خارج خط المرمى لتوسيع زاوية التمرير. 2. توجيه قلبي الدفاع لفتح الملعب على الأطراف. 3. الهدوء وقراءة ضغط المهاجم لتحديد التمريرة القصيرة أو الطويلة."
 };
 
-function appendMessage(text, sender) {
+function speakAIResponse(text) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ar-SA';
+    utterance.rate = 1.0;
+    window.speechSynthesis.speak(utterance);
+  }
+}
+
+function appendMessage(text, sender, speak = false) {
   const box = document.getElementById("chatBox");
   const div = document.createElement("div");
   div.className = `chat-msg ${sender}`;
-  div.textContent = text;
+
+  if (sender === 'ai') {
+    div.innerHTML = `<div>${text}</div><button style="margin-top:6px; background:none; border:none; color:var(--go); font-weight:bold; cursor:pointer; font-size:0.8rem;" onclick="speakAIResponse('${text.replace(/'/g, "")}')">🔊 استماع للإجابة</button>`;
+    if (speak) speakAIResponse(text);
+  } else {
+    div.textContent = text;
+  }
+
   box.appendChild(div);
   box.scrollTop = box.scrollHeight;
 }
@@ -274,7 +293,7 @@ function handleUserQuery(query) {
         break;
       }
     }
-    appendMessage(reply, "ai");
+    appendMessage(reply, "ai", true);
   }, 600);
 }
 
