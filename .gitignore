@@ -1,0 +1,31 @@
+# نظام التشغيل
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# المحررات
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ملفات مؤقتة وسجلات
+*.log
+*.tmp
+*.bak
+~$*
+
+# ملفات Netlify المحلية
+.netlify/
+
+# ملفات Vercel المحلية
+.vercel/
+
+# اعتماديات وبناء (إن أضفتها لاحقًا)
+node_modules/
+dist/
+build/
+
+# ملفات سرية
+.env
+.env.*
