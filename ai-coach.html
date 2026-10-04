@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مساعد الذكاء الاصطناعي التكتيكي | AI Coach Assistant 🤖⚽</title>
+<meta name="description" content="مساعد تكتيكي ذكي يقترح تمارين وحلول تدريبية فورية بناءً على وضعية الفريق وخصم المباراة.">
+<meta name="theme-color" content="#0f5b3a">
+
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #070e17;
+  --card: #0f172a;
+  --tx: #f1f5f2;
+  --mut: #94a3b8;
+  --gr: #10b981;
+  --go: #f59e0b;
+  --bd: #1e293b;
+  --rd: #ef4444;
+  --shadow: 0 10px 30px rgba(0,0,0,0.6);
+  box-sizing: border-box;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'Cairo', system-ui, sans-serif;
+  line-height: 1.8;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; text-decoration: none; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0f5b3a;
+  color: #fff;
+  border-bottom: 3px solid var(--go);
+  padding: 10px 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+.header-bar {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-weight: 900;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-hdr {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--bd);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-top: 0;
+  color: var(--go);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-box {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  height: 350px;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.chat-msg {
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 80%;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.chat-msg.user {
+  background: var(--go);
+  color: #000;
+  align-self: flex-start;
+  font-weight: 700;
+}
+.chat-msg.ai {
+  background: #1e293b;
+  color: #fff;
+  align-self: flex-end;
+  border: 1px solid var(--bd);
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 10px;
+}
+input[type="text"] {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.95px;
+  padding: 12px 16px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--tx);
+}
+input[type="text"]:focus { outline: none; border-color: var(--go); }
+
+.btn-act {
+  background: var(--go);
+  color: #000;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.btn-act:hover { background: #d97706; }
+
+.quick-prompts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.prompt-chip {
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  color: var(--mut);
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.prompt-chip:hover { border-color: var(--go); color: var(--go); }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e293b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bar">
+    <div class="brand">
+      🤖 مساعد الذكاء الاصطناعي التكتيكي | AI Coach
+    </div>
+    <a class="btn-hdr" href="index.html">← متجر التطبيقات</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h2>💬 اسأل مساعد المدرب الذكي</h2>
+    <p style="font-size:0.9rem; color:var(--mut); margin-top:0;">اطرح أي سؤال تكتيكي أو تدريبي، أو اختر أحد الأسئلة الجاهزة أدناه للحصول على تحليل فوري وتوصيات تدريبية:</p>
+
+    <div class="chat-box" id="chatBox">
+      <div class="chat-msg ai">
+        أهلاً بك يا كوتش! أنا مساعدك الذكي المتخصص في تكتيكات كرة القدم وتدريب حراس المرمى. كيف يمكنني مساعدتك في تحضير الحصة التدريبية أو خطة المباراة القادمة؟
+      </div>
+    </div>
+
+    <div class="chat-input-row">
+      <input type="text" id="userInput" aria-label="اكتب سؤالك التكتيكي هنا" placeholder="اكتب سؤالك التكتيكي أو التدريبي هنا...">
+      <button class="btn-act" id="btnSend">إرسال 🚀</button>
+    </div>
+
+    <div class="quick-prompts">
+      <span style="font-size:0.8rem; color:var(--mut); font-weight:700; align-self:center;">أسئلة سريعة:</span>
+      <button class="prompt-chip" onclick="askPrompt('كيف أتعامل مع فريق يلعب بضغط عالي؟')">ضغط عالي</button>
+      <button class="prompt-chip" onclick="askPrompt('ما هي أفضل تمارين لسرعة رد فعل حارس المرمى؟')">رد فعل الحارس</button>
+      <button class="prompt-chip" onclick="askPrompt('كيف أنظم الدفاع في الركلات الركنية؟')">دفاع الركنيات</button>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const toast = document.getElementById("toast");
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+const aiKnowledge = {
+  "ضغط عالي": "للتعامل مع فريق يطبق الضغط العالي (High Pressing): 1. اعتماد التمرير السريع من لمسة واحدة. 2. تحرك لاعبي الوسط لفتح زوايا تمرير خلف خط الضغط الأول. 3. استخدام التمريرات الطويلة نحو الأطراف لاستغلال المساحة خلف المدافعين المتقدمين.",
+  "رد فعل الحارس": "لتطوير سرعة رد فعل حارس المرمى: 1. تمارين التسديدات المفاجئة من مسافات قصيرة (5-8 أمتار). 2. استخدام كرات ذات ألوان مختلفة يتطلب إبعادها بناءً على إشارة مدرب الحراس. 3. تدريبات التوافق العصبي العضلي والقفز المتتالي.",
+  "دفاع الركنيات": "لتنظيم دفاع الركنيات بكفاءة: 1. تطبيق دفاع مختلط (Mixed Defense): 3 لاعبين رقابة لصيقة على أخطر مهاجمي الخصم + 4 لاعبين في منطقة الزنار (Zone) أمام المرمى. 2. وضع لاعب عند القائم القريب لمنع الرأسيات القريبة. 3. إخراج الكرة نحو الأطراف بسرعة لبدء الهجمة المرتدة."
+};
+
+function appendMessage(text, sender) {
+  const box = document.getElementById("chatBox");
+  const div = document.createElement("div");
+  div.className = `chat-msg ${sender}`;
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+function handleUserQuery(query) {
+  if (!query.trim()) return;
+  appendMessage(query, "user");
+  document.getElementById("userInput").value = "";
+
+  setTimeout(() => {
+    let reply = "بناءً على المعايير البيداغوجية الحديثة، أقترح عليك التركيز على تنظيم الحصة التدريبية القادمة بناءً على تحليل الأداء واستخدام أدوات تحليل الفيديو لدينا.";
+    for (let key in aiKnowledge) {
+      if (query.includes(key) || query.includes(key.substring(0, 4))) {
+        reply = aiKnowledge[key];
+        break;
+      }
+    }
+    appendMessage(reply, "ai");
+  }, 600);
+}
+
+document.getElementById("btnSend").onclick = () => {
+  handleUserQuery(document.getElementById("userInput").value);
+};
+
+document.getElementById("userInput").onkeypress = (e) => {
+  if (e.key === "Enter") document.getElementById("btnSend").click();
+};
+
+function askPrompt(q) {
+  document.getElementById("userInput").value = q;
+  document.getElementById("btnSend").click();
+}
+</script>
+</body>
+</html>
