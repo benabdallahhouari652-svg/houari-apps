@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>تركيز الصلاة وقفل الانشغال 🕌 | Prayer Focus DZ</title>
-<meta name="description" content="تطبيق إسلامي بيداغوجي لمساعدتك وأبنائك على عدم الانشغال بالهاتف وقت الصلاة: ضبط أوقات الصلوات الخمس وتفعيل قفل الشاشة التلقائي لمدة 15 دقيقة.">
+<title>تركيز الصلاة وقفل الانشغال 🕌 | Prayer & Screen Time Focus DZ</title>
+<meta name="description" content="تطبيق إسلامي بيداغوجي صدقة جارية للمربي بن عبدالله الهواري وعائلته: تنبيه أوقات الصلاة، قفل الانشغال، وتحكم وقت اللعب للأطفال.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -47,32 +47,39 @@ main { max-width: 850px; margin: 0 auto; padding: 20px 16px; }
   padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px;
 }
 
-h2 { font-size: 1.4rem; font-weight: 900; color: var(--gold); margin-top: 0; }
+.sadaqah-card {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(251, 191, 36, 0.15) 100%);
+  border: 2px dashed var(--gold); border-radius: 18px; padding: 20px; margin-bottom: 20px;
+}
+.sadaqah-title { font-size: 1.1rem; font-weight: 900; color: var(--gold); margin-bottom: 8px; }
+.sadaqah-text { font-size: 0.9rem; color: #d1fae5; line-height: 1.9; }
+
+h2 { font-size: 1.3rem; font-weight: 900; color: var(--gold); margin-top: 0; }
 
 .clock-display {
-  font-size: 2.2rem; font-weight: 900; font-family: monospace; color: var(--gold);
-  background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 12px;
-  display: inline-block; margin-bottom: 16px; border: 1px solid var(--border);
+  font-size: 2rem; font-weight: 900; font-family: monospace; color: var(--gold);
+  background: rgba(0,0,0,0.3); padding: 8px 16px; border-radius: 12px;
+  display: inline-block; margin-bottom: 14px; border: 1px solid var(--border);
 }
 
 .prayer-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 16px 0;
 }
 .prayer-item {
   background: rgba(16, 185, 129, 0.1); border: 2px solid var(--green); border-radius: 14px;
-  padding: 14px; display: flex; flex-direction: column; gap: 6px; align-items: center;
+  padding: 12px; display: flex; flex-direction: column; gap: 4px; align-items: center;
 }
-.prayer-name { font-weight: 900; font-size: 1.05rem; color: var(--gold); }
-input[type="time"] {
+.prayer-name { font-weight: 900; font-size: 0.95rem; color: var(--gold); }
+input[type="time"], select {
   background: var(--bg); color: #fff; border: 1px solid var(--green);
-  padding: 6px 10px; border-radius: 8px; font-family: monospace; font-size: 1.1rem;
+  padding: 6px 10px; border-radius: 8px; font-family: inherit; font-size: 1rem;
   font-weight: bold; text-align: center; width: 100%;
 }
 
 .btn-act {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #fff; border: none; padding: 12px 28px; border-radius: 12px;
-  font-family: inherit; font-weight: 900; font-size: 1.05rem; cursor: pointer;
+  color: #fff; border: none; padding: 12px 24px; border-radius: 12px;
+  font-family: inherit; font-weight: 900; font-size: 1rem; cursor: pointer;
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
 }
@@ -104,57 +111,67 @@ input[type="time"] {
 
 <header>
   <div class="brand">
-    <span>🕌</span> تركيز الصلاة وقفل الانشغال | Prayer Focus DZ
+    <span>🕌</span> تركيز الصلاة وقفل الانشغال | Prayer Focus DZ 🇩🇿
   </div>
   <a href="index.html" style="color:#fff; font-weight:700; text-decoration:none;">← المتجر</a>
 </header>
 
 <main>
+  <!-- Sadaqah Jariyah Card -->
+  <div class="sadaqah-card">
+    <div class="sadaqah-title">🌿 صدقة جارية 🇩🇿</div>
+    <div class="sadaqah-text">
+      هذا التطبيق <b>صدقة جارية</b> عن مؤسسه ومطوره المربي الرياضي ومدرب حراس المرمى <b>بن عبدالله الهواري 🇩🇿</b>، وعن جميع أفراد عائلته الكريمة: أبيه، أمه، زوجته، ابنته، إخوته وأخواته.<br>
+      تقبل الله منا ومنكم صالح الأعمال، وجعلها في ميزان حسناتنا أجمعين.
+    </div>
+  </div>
+
   <div class="card">
     <h2>🕌 ضبط أوقات الصلوات الخمس والتنبيه التلقائي</h2>
-    <p style="font-size:0.92rem; color:var(--mut);">قم بتعديل توقيت كل صلاة حسب توقيت مدينتك. عند حلول الوقت تماماً، سيقوم التطبيق بتشغيل الأذان وقفل الشاشة تلقائياً لمدة 15 دقيقة لمنع الانشغال بالهاتف.</p>
-
     <div class="clock-display" id="liveClock">00:00:00</div>
 
     <div class="prayer-grid">
-      <div class="prayer-item">
-        <span class="prayer-name">🌅 الفجر</span>
-        <input type="time" id="timeFajr" aria-label="وقت صلاة الفجر" value="05:15">
-      </div>
-      <div class="prayer-item">
-        <span class="prayer-name">☀️ الظهر</span>
-        <input type="time" id="timeDhuhr" aria-label="وقت صلاة الظهر" value="12:45">
-      </div>
-      <div class="prayer-item">
-        <span class="prayer-name">⛅ العصر</span>
-        <input type="time" id="timeAsr" aria-label="وقت صلاة العصر" value="16:10">
-      </div>
-      <div class="prayer-item">
-        <span class="prayer-name">🌇 المغرب</span>
-        <input type="time" id="timeMaghrib" aria-label="وقت صلاة المغرب" value="19:20">
-      </div>
-      <div class="prayer-item">
-        <span class="prayer-name">🌙 العشاء</span>
-        <input type="time" id="timeIsha" aria-label="وقت صلاة العشاء" value="20:50">
-      </div>
+      <div class="prayer-item"><span class="prayer-name">🌅 الفجر</span><input type="time" id="timeFajr" aria-label="وقت صلاة الفجر" value="05:15"></div>
+      <div class="prayer-item"><span class="prayer-name">☀️ الظهر</span><input type="time" id="timeDhuhr" aria-label="وقت صلاة الظهر" value="12:45"></div>
+      <div class="prayer-item"><span class="prayer-name">⛅ العصر</span><input type="time" id="timeAsr" aria-label="وقت صلاة العصر" value="16:10"></div>
+      <div class="prayer-item"><span class="prayer-name">🌇 المغرب</span><input type="time" id="timeMaghrib" aria-label="وقت صلاة المغرب" value="19:20"></div>
+      <div class="prayer-item"><span class="prayer-name">🌙 العشاء</span><input type="time" id="timeIsha" aria-label="وقت صلاة العشاء" value="20:50"></div>
     </div>
 
     <div style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-      <button class="btn-act" id="btnSaveTimes">💾 حفظ التوقيتات</button>
-      <button class="btn-act" id="btnTestLockdown" style="background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color:#000;">🔒 اختبار القفل (15 دقيقة)</button>
+      <button class="btn-act" id="btnSaveTimes">💾 حفظ أوقات الصلاة</button>
+      <button class="btn-act" id="btnTestLockdown" style="background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color:#000;">🔒 اختبار قفل الصلاة (15 د)</button>
     </div>
+  </div>
+
+  <!-- Kids Playtime Timer Card -->
+  <div class="card">
+    <h2>👶 نظام تحكم وقت اللعب للأطفال (Screen Time Limit)</h2>
+    <p style="font-size:0.9rem; color:var(--mut);">أعطِ طفلك وقتاً محدداً للعب (مثلاً ساعة واحدة)، وبعد انتهاء الوقت يقوم التطبيق بقفل الشاشة لمنع إدمان الهواتف والألعاب.</p>
+
+    <div style="display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:12px;">
+      <label for="playtimeSelect" style="font-weight:700;">مدة اللعب المسموح بها:</label>
+      <select id="playtimeSelect" aria-label="مدة اللعب المسموح بها" style="max-width:200px;">
+        <option value="15">15 دقيقة</option>
+        <option value="30">30 دقيقة</option>
+        <option value="60" selected>ساعة واحدة (60 د)</option>
+        <option value="120">ساعتان (120 د)</option>
+      </select>
+      <button class="btn-act" id="btnStartPlaytimer" style="background:linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">▶ بدء مؤقت اللعب</button>
+    </div>
+    <div id="playtimeStatus" style="margin-top:10px; font-weight:800; color:var(--gold);"></div>
   </div>
 </main>
 
 <!-- Lockdown Shield Screen -->
 <div class="lockdown-overlay" id="lockdownScreen">
   <div style="font-size:4rem;">🕌</div>
-  <h1 style="color:var(--gold); margin:10px 0; font-size:2rem;">حي على الصلاة.. حي على الفلاح</h1>
-  <p style="font-size:1.1rem; max-width:550px; color:#a7f3d0;" id="lockdownReason">حان وقت الصلاة. تم قفل الشاشة مؤقتاً لتبتعد عن الألعاب والهاتف وتؤدي صلاتك بخشوع.</p>
+  <h1 style="color:var(--gold); margin:10px 0; font-size:2rem;" id="lockdownHeader">حي على الصلاة.. حي على الفلاح</h1>
+  <p style="font-size:1.1rem; max-width:550px; color:#a7f3d0;" id="lockdownReason">تم قفل الشاشة مؤقتاً لتبتعد عن الألعاب والهاتف وتؤدي صلاتك بخشوع.</p>
 
   <div class="timer-box" id="lockdownTimer">15:00</div>
 
-  <p style="font-size:0.85rem; color:var(--mut);">سيتم فتح الهاتف تلقائياً بعد انتهاء وقت الصلاة (15 دقيقة).</p>
+  <p style="font-size:0.85rem; color:var(--mut);">تطبيق صدقة جارية عن المربي بن عبدالله الهواري وعائلته الكريمة 🇩🇿</p>
 
   <button class="btn-act" id="btnEmergencyUnlock" style="background:#ef4444; margin-top:20px; font-size:0.85rem; padding:8px 16px;">🔓 إلغاء الطوارئ للأبوين</button>
 </div>
@@ -169,7 +186,7 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
-// Load saved times or defaults
+// Prayer times management
 const defaultTimes = { fajr: "05:15", dhuhr: "12:45", asr: "16:10", maghrib: "19:20", isha: "20:50" };
 let savedTimes = JSON.parse(localStorage.getItem("prayer_custom_times")) || defaultTimes;
 
@@ -191,7 +208,7 @@ document.getElementById("btnSaveTimes").onclick = () => {
   showToast("تم حفظ وتحديث أوقات الصلوات بنجاح 💾🕌");
 };
 
-// Live Clock & Auto Check
+// Live Clock & Auto Prayer Check
 setInterval(() => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
@@ -201,24 +218,24 @@ setInterval(() => {
 
   document.getElementById("liveClock").textContent = `${hours}:${minutes}:${seconds}`;
 
-  // Check against prayer times
   if (!document.getElementById("lockdownScreen").classList.contains("active")) {
-    if (currentTimeStr === savedTimes.fajr) triggerPrayerLock("صلاة الفجر");
-    else if (currentTimeStr === savedTimes.dhuhr) triggerPrayerLock("صلاة الظهر");
-    else if (currentTimeStr === savedTimes.asr) triggerPrayerLock("صلاة العصر");
-    else if (currentTimeStr === savedTimes.maghrib) triggerPrayerLock("صلاة المغرب");
-    else if (currentTimeStr === savedTimes.isha) triggerPrayerLock("صلاة العشاء");
+    if (currentTimeStr === savedTimes.fajr) triggerLock("صلاة الفجر", 15, "حي على الصلاة.. وقت الفجر حان");
+    else if (currentTimeStr === savedTimes.dhuhr) triggerLock("صلاة الظهر", 15, "حي على الصلاة.. وقت الظهر حان");
+    else if (currentTimeStr === savedTimes.asr) triggerLock("صلاة العصر", 15, "حي على الصلاة.. وقت العصر حان");
+    else if (currentTimeStr === savedTimes.maghrib) triggerLock("صلاة المغرب", 15, "حي على الصلاة.. وقت المغرب حان");
+    else if (currentTimeStr === savedTimes.isha) triggerLock("صلاة العشاء", 15, "حي على الصلاة.. وقت العشاء حان");
   }
 }, 1000);
 
 let lockdownInterval;
-function startLockdown(durationMinutes = 15, reason = "حان وقت الصلاة") {
+function startLockdown(durationMinutes = 15, title = "حي على الصلاة", reason = "حان وقت الصلاة") {
   const overlay = document.getElementById("lockdownScreen");
-  document.getElementById("lockdownReason").textContent = `${reason}. تم قفل الشاشة مؤقتاً لتبتعد عن الألعاب والهاتف وتؤدي صلاتك بخشوع.`;
+  document.getElementById("lockdownHeader").textContent = title;
+  document.getElementById("lockdownReason").textContent = `${reason}. تم قفل الشاشة مؤقتاً لتبتعد عن الألعاب والهاتف.`;
   overlay.classList.add("active");
 
   if ('speechSynthesis' in window) {
-    const utter = new SpeechSynthesisUtterance(`حي على الصلاة. ${reason} حان.`);
+    const utter = new SpeechSynthesisUtterance(`${title}. ${reason}.`);
     utter.lang = 'ar-SA';
     window.speechSynthesis.speak(utterance);
   }
@@ -231,7 +248,7 @@ function startLockdown(durationMinutes = 15, reason = "حان وقت الصلا�
     if (timeLeft <= 0) {
       clearInterval(lockdownInterval);
       overlay.classList.remove("active");
-      showToast("انتهت فترة قفل الصلاة. تقبل الله طاعتكم 🌟");
+      showToast("انتهت فترة القفل. تقبل الله طاعتكم 🌟");
       return;
     }
     timeLeft--;
@@ -240,19 +257,33 @@ function startLockdown(durationMinutes = 15, reason = "حان وقت الصلا�
   }, 1000);
 }
 
-function triggerPrayerLock(prayerName) {
-  startLockdown(15, `حان وقت ${prayerName}`);
+function triggerLock(title, mins, reason) {
+  startLockdown(mins, title, reason);
 }
 
 document.getElementById("btnTestLockdown").onclick = () => {
-  startLockdown(15, "اختبار قفل الصلاة");
+  startLockdown(15, "اختبار قفل الصلاة 🕌", "اختبار النظام");
   showToast("تم تفعيل اختبار قفل الصلاة (15 دقيقة) 🔒");
+};
+
+// Kids Playtime Timer Logic
+let playtimeTimeout;
+document.getElementById("btnStartPlaytimer").onclick = () => {
+  const mins = parseInt(document.getElementById("playtimeSelect").value);
+  showToast(`بدأ مؤقت اللعب لمدة ${mins} دقيقة ⏱️`);
+  document.getElementById("playtimeStatus").textContent = `⏳ مؤقت اللعب نشط (${mins} دقيقة متبقية)...`;
+
+  clearTimeout(playtimeTimeout);
+  playtimeTimeout = setTimeout(() => {
+    startLockdown(10, "انتهى وقت اللعب المسموح! 🛑", "انقضت مدة اللعب للطفل");
+    document.getElementById("playtimeStatus").textContent = "";
+  }, mins * 60 * 1000);
 };
 
 document.getElementById("btnEmergencyUnlock").onclick = () => {
   clearInterval(lockdownInterval);
   document.getElementById("lockdownScreen").classList.remove("active");
-  showToast("تم إلغاء القفل مؤقتاً");
+  showToast("تم إلغاء القفل مؤقتاً للأبوين");
 };
 </script>
 </body>
