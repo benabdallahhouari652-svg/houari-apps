@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بنك التمارين وبرامج التدريب حسب الفئات | COACH TRAINING BANK 📋⚽</title>
+<meta name="description" content="بنك تمارين وبرامج تدريبية احترافية مصنفة حسب الفئات السنية ومواضيع التدريب لكرة القدم وحراس المرمى.">
+<meta name="theme-color" content="#0f5b3a">
+
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f3f7f4;
+  --card: #ffffff;
+  --ink: #12241b;
+  --mut: #5a6b62;
+  --g: #0f5b3a;
+  --g-light: #167a4e;
+  --g2: #d9ece2;
+  --r: #c8102e;
+  --gold: #d97706;
+  --ln: #d3ded7;
+  --shadow: 0 4px 20px rgba(15, 91, 58, 0.08);
+  --radius: 16px;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1712;
+    --card: #15241c;
+    --ink: #e8f1ec;
+    --mut: #9fb3a8;
+    --g: #3fbf85;
+    --g-light: #52d197;
+    --g2: #1c3a2b;
+    --r: #ef4444;
+    --gold: #f59e0b;
+    --ln: #27402f;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cairo', system-ui, sans-serif;
+  line-height: 1.8;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: inherit; text-decoration: none; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0f5b3a;
+  color: #fff;
+  border-bottom: 3px solid var(--r);
+  padding: 10px 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.header-bar {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-hdr {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--ln);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 0;
+  color: var(--g);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+label { font-weight: 700; font-size: 0.88rem; display: block; margin-bottom: 4px; color: var(--mut); }
+select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.drills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.drill-card {
+  background: var(--bg);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.drill-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--g2);
+  color: var(--g);
+  padding: 2px 10px;
+  border-radius: 99px;
+  align-self: flex-start;
+}
+.drill-title { font-weight: 800; font-size: 1.05rem; color: var(--ink); }
+.drill-desc { font-size: 0.88rem; color: var(--mut); line-height: 1.6; }
+
+.btn-act {
+  background: var(--g);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+.btn-act:hover { background: var(--g-light); }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #1e293b;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bar">
+    <div class="brand">
+      📋 بنك التمارين وبرامج التدريب
+    </div>
+    <a class="btn-hdr" href="index.html">← متجر التطبيقات</a>
+  </div>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>🔍 ابحث عن البرامج والتمارين التدريبية</h2>
+    <div class="filter-grid">
+      <div>
+        <label for="filterAge">اختر الفئة السنية:</label>
+        <select id="filterAge">
+          <option value="all">جميع الفئات</option>
+          <option value="seniors">أكابر (Seniors)</option>
+          <option value="u19">أقل من 19 سنة (U19)</option>
+          <option value="u17">أقل من 17 سنة (U17)</option>
+          <option value="u15">أقل من 15 سنة (U15)</option>
+          <option value="u13">أقل من 13 سنة (مدرسة كرة القدم)</option>
+        </select>
+      </div>
+      <div>
+        <label for="filterTopic">اختر موضوع التمرين:</label>
+        <select id="filterTopic">
+          <option value="all">جميع المواضيع</option>
+          <option value="physical">🏋️ التحضير البدني والسرعة</option>
+          <option value="tactical">🧠 التكتيك والتمركز الجماعي</option>
+          <option value="technical">⚽ التقنية والمهارة الفردية</option>
+          <option value="gk">🧤 حراس المرمى</option>
+          <option value="setpieces">📐 الكرات الثابتة</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-act" id="btnSearchDrills">🔍 عرض التمارين المناسبة</button>
+  </div>
+
+  <div class="card">
+    <h2>📚 نتائج التمارين المتاحة (<span id="drillCount">0</span>)</h2>
+    <div class="drills-container" id="drillsGrid"></div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const allDrills = [
+  { id: 1, age: "u15", topic: "physical", title: "تنمية التحمل الهوائي بالكرة", desc: "مساحة 30×20 م، تمريرات متتالية سريعة لمدة 4 دقائق بثلاث مجموعات.", ageName: "أقل من 15 سنة", topicName: "التحضير البدني" },
+  { id: 2, age: "seniors", topic: "tactical", title: "الضغط العالي واستعادة الكرة في الثلث الهجومي", desc: "تمرين 4 ضد 4 + 2 جوكر لتطبيق استراتيجية الضغط العالي وقطع التمريرات.", ageName: "أكابر", topicName: "التكتيك والتمركز" },
+  { id: 3, age: "u17", topic: "technical", title: "استلام تحت الضغط والدوران السريع", desc: "مواجهة 1 ضد 1 في مساحة ضيقة لتطوير مهارة حماية الكرة والدوران.", ageName: "أقل من 17 سنة", topicName: "التقنية والمهارة" },
+  { id: 4, age: "u13", topic: "gk", title: "سرعة رد الفعل والارتماء الأرضي للبراعم", desc: "تسديدات أرضية متتالية خفيفة من مسافة قريبة لتأكيد وضعية الجسد السليمة.", ageName: "أقل من 13 سنة", topicName: "حراس المرمى" },
+  { id: 5, age: "u19", topic: "setpieces", title: "دفاع المنطقة في الركلات الركنية", desc: "توزيع الأدوار الدفاعية وتغطية القائم القريب والبعيد ضد الكرات العالية.", ageName: "أقل من 19 سنة", topicName: "الكرات الثابتة" },
+  { id: 6, age: "seniors", topic: "physical", title: "تطوير القوة الانفجارية والسرعة الانتقالية", desc: "سباقات قصيرة 15 متراً مع تغيير الاتجاه ورد الفعل على إشارة المدرب.", ageName: "أكابر", topicName: "التحضير البدني" }
+];
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2500);
+}
+
+function renderDrills() {
+  const age = document.getElementById("filterAge").value;
+  const topic = document.getElementById("filterTopic").value;
+
+  const filtered = allDrills.filter(d =>
+    (age === "all" || d.age === age) &&
+    (topic === "all" || d.topic === topic)
+  );
+
+  document.getElementById("drillCount").textContent = filtered.length;
+  const grid = document.getElementById("drillsGrid");
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--mut); padding:20px;">لا توجد تمارين مطابقة لفلاتر البحث المحددة.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(d => `
+    <div class="drill-card">
+      <span class="drill-badge">${d.ageName} · ${d.topicName}</span>
+      <div class="drill-title">${d.title}</div>
+      <div class="drill-desc">${d.desc}</div>
+      <button class="btn-act" style="margin-top:auto; font-size:0.82rem; padding:6px 12px;" onclick="showToast('تمت إضافة التمرين إلى برنامجك الأسبوعي 📋')">➕ إضافة للبرنامج</button>
+    </div>
+  `).join("");
+}
+
+document.getElementById("btnSearchDrills").onclick = () => {
+  renderDrills();
+  showToast("تم تحديث قائمة التمارين بناءً على اختيارك 🔍");
+};
+
+renderDrills();
+</script>
+</body>
+</html>
