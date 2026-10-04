@@ -6,6 +6,8 @@
 <title>متجر تطبيقات بن عبدالله الهواري | الجزائر 🇩🇿</title>
 <meta name="description" content="متجر جزائري شامل لعرض واستخدام التطبيقات والمنصات والأدوات الرقمية للمدربين والرياضيين وحراس المرمى من تطوير المربي الرياضي بن عبدالله الهواري.">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<!-- QRious Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <style>
 :root{--bg:#f3f7f4;--card:#fff;--ink:#12241b;--mut:#5a6b62;--g:#0f5b3a;--g2:#d9ece2;--r:#c8102e;--ln:#d3ded7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1712;--card:#15241c;--ink:#e8f1ec;--mut:#9fb3a8;--g:#3fbf85;--g2:#1c3a2b;--ln:#27402f}}
@@ -64,6 +66,14 @@ input{flex:1;font:inherit;padding:10px 14px;border:1px solid var(--ln);border-ra
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--r);outline-offset:2px}
 .empty{color:var(--mut);text-align:center;padding:20px;grid-column:1/-1}
 footer{text-align:center;color:var(--mut);font-size:.8rem;padding:22px 14px 30px;border-top:1px solid var(--ln);margin-top:26px}
+
+/* Modal for QR */
+.qr-modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+  z-index: 500; display: none; place-items: center; padding: 20px; text-align: center;
+}
+.qr-modal.open { display: grid; }
+.qr-box { background: var(--card); border: 2px solid var(--g); border-radius: 20px; padding: 24px; max-width: 360px; width: 100%; }
 </style>
 </head>
 <body>
@@ -111,17 +121,29 @@ footer{text-align:center;color:var(--mut);font-size:.8rem;padding:22px 14px 30px
 
 <main id="v-app" hidden></main>
 
+<!-- QR Code Modal -->
+<div class="qr-modal" id="qrModal">
+  <div class="qr-box">
+    <h3 id="qrAppTitle" style="color:var(--g); margin-top:0;">كود QR للتطبيق</h3>
+    <div style="background:#fff; padding:12px; border-radius:12px; display:inline-block; margin:10px 0; border:1px solid var(--ln);">
+      <canvas id="modalQrCanvas"></canvas>
+    </div>
+    <p id="qrAppUrl" style="font-size:0.75rem; color:var(--mut); direction:ltr; word-break:break-all; margin:4px 0 12px;"></p>
+    <button class="b" onclick="closeQrModal()">إغلاق</button>
+  </div>
+</div>
+
 <footer>فكرة وتطوير المربي الرياضي ومدرب حراس المرمى بن عبدالله الهواري<br>جميع الحقوق محفوظة © بن عبدالله الهواري</footer>
 <script>
 const APPS=[
- {id:"discipline-dz",name:"Discipline DZ – منصة الانضباط الرياضي 🟨",desc:"أداة متكاملة لمتابعة البطاقات الصفراء والحمراء والعقوبات للاعبين والطاقم في كل فئات النادي.",long:"أداة لإدارة الانضباط في النادي: تسجيل اللاعبين والطاقم والمباريات والبطاقات، وحساب عقوبات الإيقاف تلقائيًا (كل 4 بطاقات صفراء = إيقاف مباراتين، والحمراء = مباراة إيقاف، وتُنفَّذ في المباريات الرسمية فقط).",cat:["coach","football"],tag:"أدوات المدربين",status:"new",url:"https://symphonious-kheer-30b6b4.netlify.app/",play:"",support:"",video:"",shots:[],features:["لاعبون وطاقم حسب الفئات","تسجيل المباريات والبطاقات","عقوبات تلقائية (4 صفراء = مباراة إيقاف)","الإيقاف في المباريات الرسمية فقط","لوحة تنبيهات بالموقوفين"],keys:"انضباط بطاقات صفراء حمراء عقوبات إيقاف discipline",icon:"🟨",logo:"",badge:"DISCIPLINE DZ"},
+ {id:"discipline-dz",name:"Discipline DZ – منصة الانضباط الرياضي 🟨",desc:"أداة متكاملة لمتابعة البطاقات الصفراء والحمراء والعقوبات للاعبين والطاقم في كل فئات النادي.",long:"أداة لإدارة الانضباط في النادي: تسجيل اللاعبين والطاقم والمباريات والبطاقات، وحساب عقوبات الإيقاف تلقائيًا (كل 4 بطاقات صفراء = إيقاف مباراتين، والحمراء = مباراة إيقاف، وتُنفَّذ في المباريات الرسمية فقط).",cat:["coach","football"],tag:"أدوات المدربين",status:"new",url:"https://symphonious-kheer-30b6b4.netlify.app/",play:"",support:"",video:"",shots:[],features:["لاعبون وطاقم حسب الفئات","تسجيل المباريات والبطاقات","عقوبات تلقائية (4 صفراء = إيقاف مباراتين)","الإيقاف في المباريات الرسمية فقط","لوحة تنبيهات بالموقوفين"],keys:"انضباط بطاقات صفراء حمراء عقوبات إيقاف discipline",icon:"🟨",logo:"",badge:"DISCIPLINE DZ"},
  {id:"goalkeeper-game",name:"لعبة حارس المرمى",desc:"لعبة رياضية تضعك في مكان حارس المرمى لتختبر ردود أفعالك وتتحدى نفسك.",long:"لعبة رياضية تضعك في مكان حارس المرمى لتختبر ردود أفعالك وتتحدى نفسك.",cat:["games","gk"],tag:"ألعاب رياضية",status:"live",url:"https://wondrous-churros-49df70.netlify.app/",play:"",support:"",video:"",shots:[],features:[],keys:"لعبة حارس مرمى كرة تصديات",icon:"⚽",logo:"",badge:""},
  {id:"kids-english",name:"تطبيق تعليم الإنجليزية للأطفال",desc:"تطبيق تعليمي لتعلّم اللغة الإنجليزية للأطفال بطريقة بسيطة وممتعة.",long:"تطبيق تعليمي لتعلّم اللغة الإنجليزية للأطفال بطريقة بسيطة وممتعة.",cat:["edu"],tag:"تعليمي",status:"live",url:"https://mellow-narwhal-5e8683.netlify.app/",play:"",support:"",video:"",shots:[],features:[],keys:"انجليزية إنجليزي اطفال تعليم لغة english kids",icon:"🔤",logo:"",badge:""},
  {id:"gk-elite-3in1",name:"GK ELITE 3IN1 🇩🇿",desc:"تطبيق رياضي لحراس المرمى والمدربين من تطوير المربي الرياضي بن عبدالله الهواري.",long:"تطبيق رياضي لحراس المرمى والمدربين من تطوير المربي الرياضي بن عبدالله الهواري.",cat:["gk","coach"],tag:"حراس المرمى",status:"live",url:"https://iridescent-lollipop-a30d49.netlify.app/",play:"",support:"",video:"",shots:[],features:[],keys:"gk elite حارس مرمى تدريب",icon:"🧤",logo:"",badge:"GK ELITE"},
  {id:"super-goalkeeper",name:"لعبة الحارس الخارق",desc:"لعبة سريعة تحرّك فيها إصبعك يمينًا ويسارًا لتصدّ الكرات، وتجمع النقاط وتتحدى رقمك القياسي.",long:"لعبة سريعة تحرّك فيها إصبعك يمينًا ويسارًا لتصدّ الكرات، وتجمع النقاط وتتحدى رقمك القياسي.",cat:["games","gk"],tag:"ألعاب رياضية",status:"live",url:"https://bespoke-raindrop-fdd888.netlify.app/",play:"",support:"",video:"",shots:[],features:["التحكم بالسحب بالإصبع","كرة ذهبية بثلاث نقاط","ثلاث محاولات"],keys:"لعبة حارس مرمى تصديات كرة",icon:"🧤",logo:"https://bespoke-raindrop-fdd888.netlify.app/icon-192.png",badge:""},
- {id:"gk-skills-academy",name:"أكاديمية مهارات حارس المرمى ⚽",desc:"منصة تعليمية بيداغوجية لشرح وضعيات ومهارات حارس المرمى مع التقييم التفاعلي.",long:"مرجع بيداغوجي وتعليمي لمهارات ووضعيات حارس المرمى مع اختبارات تفاعلية.",cat:["gk","coach"],tag:"تعليم رياضي",status:"live",url:"./gk-academy.html",urlLabel:"⚽ تشغيل الأكاديمية",play:"",support:"",video:"",shots:[],features:["منهاج بيداغوجي لوقوف ووضعيات الحارس","اختبارات تفاعلية وأوسمة تفوق"],keys:"حارس مرمى تدريب تعليم اكاديمية",icon:"🧤",logo:"",badge:"GK SKILLS ACADEMY"},
- {id:"translation-dz",name:"الترجمة والتواصل دي زاد 🌍",desc:"منصة للترجمة الفورية بالدارجة الجزائرية، القاموس الرياضي والتكتيكي، ماسح الكتب OCR، وتواصل المدربين.",long:"منصة شاملة للترجمة والتواصل: صوت المسافر بالدارجة إلى 9 لغات، القاموس الرياضي والتكتيكي، ماسح الكتب OCR وتصدير PDF، وتواصل المدربين.",cat:["edu","coach"],tag:"ترجمة وتواصل",status:"new",url:"./translation.html",urlLabel:"🌍 تشغيل تطبيق الترجمة",play:"",support:"",video:"",shots:[],features:["صوت المسافر بالدارجة مع 9 لغات عالمية","القاموس الرياضي والتكتيكي المصنف","ماسح الكتب والمذكرات OCR وتصدير PDF","تواصل المدربين واللاعبين"],keys:"ترجمة تواصل دارجة مسافر ماسح كتب مذكرات pdf مدرب translation",icon:"🌍",logo:"",badge:"TRANSLATE DZ"},
- {id:"video-analys-dz",name:"video ANALYS DZ – تحليل الفيديو 🎬",desc:"أداة احترافية لتحليل مباريات وتمارين الفيديو (LiveTag Pro)، الرسم التكتيكي، ومقارنة شاشتين.",long:"أداة تحليل فيديو احترافية LiveTag Pro: رسم تكتيكي هندسي، كاميرا مباشرة، مقارنة شاشتين جنبًا إلى جنب، شبكة الملعب، وتصدير التقارير التكتيكية.",cat:["coach","football","gk"],tag:"تحليل الأداء",status:"live",url:"./video-analys.html",urlLabel:"🎬 تشغيل أداة تحليل الفيديو",apk:"https://github.com/benabdallahhouari652-svg/video_analyzer-1-/releases/latest/download/app-release.apk",play:"",support:"",video:"",shots:[],features:["لوحة الوسوم الحية LiveTag Pro","أدوات رسم هندسي وتكتيكي وبقعة ضوء","مقارنة فيديوين جنبًا إلى جنب (Dual View)","شبكة الملعب التكتيكية والتصوير HD"],keys:"تحليل فيديو مباريات تدريب رسم وسم مقطع قياس زاوية مسافة video analys",icon:"🎬",logo:"",badge:"VIDEO ANALYS DZ"},
+ {id:"gk-skills-academy",name:"أكاديمية مهارات حارس المرمى",desc:"منصة تعليمية لمهارات ووضعيات حارس المرمى بمحتوى بيداغوجي مرتبط بالمرجع.",long:"منصة تعليمية لمهارات ووضعيات حارس المرمى بمحتوى بيداغوجي مرتبط بالمرجع.",cat:["gk","coach"],tag:"تعليم رياضي",status:"live",url:"https://vocal-malasada-f1cb21.netlify.app/",play:"",support:"",video:"",shots:[],features:["مهارات ووضعيات حارس المرمى","صور وتمارين"],keys:"حارس مرمى تدريب تعليم",icon:"🧤",logo:"",badge:"GK SKILLS ACADEMY"},
+ {id:"translation-dz",name:"الترجمة والتواصل دي زاد 🇩🇿",desc:"منصة للترجمة الفورية والتواصل: صوت المسافر بالدارجة الجزائرية، وماسح الكتب والمذكرات الرياضية.",long:"منصة للترجمة الفورية والتواصل: صوت المسافر بالدارجة الجزائرية، وماسح الكتب والمذكرات الرياضية، وتواصل المدربين مع اللاعبين.",cat:["edu","coach"],tag:"ترجمة وتواصل",status:"new",url:"https://translationapppreview.vercel.app/",play:"",support:"",video:"",shots:[],features:["صوت المسافر: ترجمة الدارجة الجزائرية إلى لغة البلد مع النطق","ماسح الكتب والمذكرات بالكاميرا"],keys:"ترجمة تواصل دارجة مسافر ماسح كتب مذكرات translation",icon:"🌍",logo:"",badge:"TRANSLATE DZ"},
+ {id:"video-analys-dz",name:"video ANALYS DZ – تحليل الفيديو",desc:"تطبيق أندرويد مجاني بلا إعلانات لتحليل مباريات وتمارين الفيديو بأدوات الرسم والقياس.",long:"تطبيق للهاتف يفتح فيديو من المعرض أو يسجّل مباشرة، ثم تحلله بأدوات الرسم على الشاشة.",cat:["coach","football","gk"],tag:"تحليل الأداء",status:"live",url:"https://videoanalyzer-1.vercel.app/",urlLabel:"🌐 صفحة التطبيق",apk:"https://github.com/benabdallahhouari652-svg/video_analyzer-1-/releases/latest/download/app-release.apk",play:"",support:"",video:"",shots:[],features:["أدوات رسم: قلم، خط، سهم، دائرة، مستطيل، نص"],keys:"تحليل فيديو مباريات تدريب رسم وسم مقطع video analys",icon:"🎬",logo:"",badge:"VIDEO ANALYS DZ"},
  {id:"sport-simulator",name:"SPORT SIMULATOR.DZ – محاكي القرارات الرياضية 🧠",desc:"منصة ذكية لمحاكاة وتدريب القرار الرياضي للحراس واللاعبين في مواقف المباريات المختلفة.",long:"SPORT SIMULATOR.DZ محاكي القرارات الرياضية المبتكر. لا تتدرب فقط على المهارة.. تدرب على القرار! يتيح تدريب حراس المرمى واللاعبين على اتخاذ القرار السريع في مواقف الانفرادات، العرضيات، 1 ضد 1، مع وضع المدرب (Coach Mode).",cat:["coach","football","gk","games"],tag:"محاكي القرارات",status:"new",url:"./sport-simulator.html",urlLabel:"🧠 تشغيل محاكي القرارات",play:"",support:"",video:"",shots:[],features:["محاكاة مواقف حراس المرمى واللاعبين","وضع المدرب (Coach Mode) لإنشاء سيناريوهات","تقارير أداء تحليلية وزمن اتخاذ القرار"],keys:"محاكي قرارات رياضة تدريب حارس مرمى لاعب football simulator dz",icon:"🧠",logo:"",badge:"SPORT SIMULATOR"},
  {id:"training-bank",name:"بنك التمارين وبرامج التدريب 📋⚽",desc:"منصة بيداغوجية احترافية تتيح للمدربين البحث عن التمارين وبرامج التدريب مصنفة حسب الفئات السنية ومواضيع التدريب.",long:"بنك التمارين وبرامج التدريب الشامل. يساعد المدربين في اختيار التمارين التدريبية المناسبة لكل فئة سنية (أكابر، U19، U17، U15، مدرسة كرة القدم) وحسب موضوع الحصة.",cat:["coach","football","edu"],tag:"برامج التدريب",status:"new",url:"./training-bank.html",urlLabel:"📋 تشغيل بنك التمارين",play:"",support:"",video:"",shots:[],features:["تصنيف التمارين حسب الفئات السنية المختلفة","فلترة حسب موضوع التدريب (بدني، تكتيكي، تقني، حراس)","مكتبة بيداغوجية متكاملة للمدربين"],keys:"بنك تمارين برامج تدريب فئات سنية مدرب كوتش training bank dz",icon:"📋",logo:"",badge:"TRAINING BANK"},
  {id:"ai-coach",name:"مساعد الذكاء الاصطناعي التكتيكي 🤖⚽",desc:"مساعد ذكي مدعوم بالذكاء الاصطناعي للإجابة عن الأسئلة التكتيكية، تقديم استشارات التحضير للمباريات واختيار التمارين.",long:"مساعد الذكاء الاصطناعي التكتيكي (AI Coach Assistant). يتيح للمدربين طرح أسئلة استراتيجية وتكتيكية والحصول على حلول فورية للتعامل مع الخصوم، تنظيم خطوط الدفاع، واختيار أفضل التمارين التدريبية.",cat:["coach","football"],tag:"مساعد ذكي",status:"new",url:"./ai-coach.html",urlLabel:"🤖 فتح المساعد الذكي",play:"",support:"",video:"",shots:[],features:["إجابات فورية عن الأسئلة التكتيكية والتدريبية","استشارات للتعامل مع الضغط العالي والكرات الثابتة"],keys:"ذكاء اصطناعي مساعد تكتيكي مدرب كوتش ai coach assistant dz",icon:"🤖",logo:"",badge:"AI COACH"},
@@ -137,11 +159,27 @@ function render(){
  const q=$("#q").value.trim().toLowerCase();
  $("#ch").innerHTML=CATS.map(c=>`<button aria-pressed="${cat==c[0]}" data-c="${c[0]}">${c[1]}</button>`).join("");
  const r=APPS.filter(a=>(!cat||(cat=="new"?a.status=="new":cats(a).includes(cat)))&&(!q||[a.name,a.desc,a.tag,a.keys,a.badge].join(" ").toLowerCase().includes(q)));
- $("#g").innerHTML=r.length?r.map(a=>`<article class="c">${ico(a)}<h4>${e(a.name)}</h4><div class="tags"><span class="tag">${e(a.tag)}</span><span class="st ${e(a.status)}">${ST[a.status]||""}</span></div><p>${e(a.desc)}</p><div class="row">${a.url?`<a class="b" href="${e(a.url)}" target="_blank" rel="noopener">${e(a.urlLabel||"🌐 تجربة التطبيق")}</a>`:`<span class="b" aria-disabled="true">قريبًا</span>`}<a class="b o" href="#/app/${e(a.id)}">التفاصيل</a>${a.url?`<button class="b o" data-s="${e(a.url)}" aria-label="مشاركة">مشاركة</button>`:""}</div></article>`).join(""):'<div class="empty">لا توجد نتائج مطابقة.</div>';
+ $("#g").innerHTML=r.length?r.map(a=>`<article class="c">${ico(a)}<h4>${e(a.name)}</h4><div class="tags"><span class="tag">${e(a.tag)}</span><span class="st ${e(a.status)}">${ST[a.status]||""}</span></div><p>${e(a.desc)}</p><div class="row">${a.url?`<a class="b" href="${e(a.url)}" target="_blank" rel="noopener">${e(a.urlLabel||"🌐 تجربة التطبيق")}</a>`:`<span class="b" aria-disabled="true">قريبًا</span>`}<a class="b o" href="#/app/${e(a.id)}">التفاصيل</a>${a.url?`<button class="b o" onclick="openQr('${encodeURIComponent(a.url)}','${e(a.name)}')">📱 QR</button><button class="b o" data-s="${e(a.url)}" aria-label="مشاركة">مشاركة</button>`:""}</div></article>`).join(""):'<div class="empty">لا توجد نتائج مطابقة.</div>';
+}
+function openQr(urlDecoded, title) {
+  const url = decodeURIComponent(urlDecoded);
+  document.getElementById("qrAppTitle").textContent = title;
+  document.getElementById("qrAppUrl").textContent = url;
+  document.getElementById("qrModal").classList.add("open");
+  new QRious({
+    element: document.getElementById("modalQrCanvas"),
+    value: url,
+    size: 200,
+    background: "white",
+    foreground: "#0f5b3a"
+  });
+}
+function closeQrModal() {
+  document.getElementById("qrModal").classList.remove("open");
 }
 function detail(a){
  const L=(h,t,c="")=>`<a class="b ${c}" href="${e(h)}" target="_blank" rel="noopener">${t}</a>`;
- return `<div class="det"><a href="#apps" class="mut">← العودة إلى التطبيقات</a>${ico(a)}<h2>${e(a.name)}</h2><div class="tags"><span class="tag">${e(a.tag)}</span><span class="st ${e(a.status)}">${ST[a.status]||""}</span>${a.badge?`<span class="tag">${e(a.badge)}</span>`:""}</div><p>${e(a.long||a.desc)}</p>${(a.features||[]).length?`<h3>المميزات</h3><ul>${a.features.map(f=>`<li>${e(f)}</li>`).join("")}</ul>`:""}<div class="row">${a.url?L(a.url,a.urlLabel||"🌐 تجربة التطبيق"):'<span class="b" aria-disabled="true">التجربة قريبًا</span>'}${a.play?L(a.play,"▶ Google Play","o"):""}${a.apk?L(a.apk,"⬇️ تحميل APK"):""}${a.support?L(a.support,"الدعم","o"):""}${a.video?L(a.video,"فيديو تعريفي","o"):""}${a.url?`<button class="b o" data-s="${e(a.url)}">مشاركة</button>`:""}</div>${a.play||a.apk?"":'<p class="mut">📱 Android قريبًا</p>'}${(a.shots||[]).length?`<h3>لقطات الشاشة</h3><div class="shots">${a.shots.map(s=>`<img src="${e(s)}" alt="لقطة شاشة" loading="lazy">`).join("")}</div>`:""}</div>`;
+ return `<div class="det"><a href="#apps" class="mut">← العودة إلى التطبيقات</a>${ico(a)}<h2>${e(a.name)}</h2><div class="tags"><span class="tag">${e(a.tag)}</span><span class="st ${e(a.status)}">${ST[a.status]||""}</span>${a.badge?`<span class="tag">${e(a.badge)}</span>`:""}</div><p>${e(a.long||a.desc)}</p>${(a.features||[]).length?`<h3>المميزات</h3><ul>${a.features.map(f=>`<li>${e(f)}</li>`).join("")}</ul>`:""}<div class="row">${a.url?L(a.url,a.urlLabel||"🌐 تجربة التطبيق"):'<span class="b" aria-disabled="true">التجربة قريبًا</span>'}${a.play?L(a.play,"▶ Google Play","o"):""}${a.apk?L(a.apk,"⬇️ تحميل APK"):""}${a.support?L(a.support,"الدعم","o"):""}${a.video?L(a.video,"فيديو تعريفي","o"):""}${a.url?`<button class="b o" onclick="openQr('${encodeURIComponent(a.url)}','${e(a.name)}')">📱 QR</button><button class="b o" data-s="${e(a.url)}">مشاركة</button>`:""}</div>${a.play||a.apk?"":'<p class="mut">📱 Android قريبًا</p>'}${(a.shots||[]).length?`<h3>لقطات الشاشة</h3><div class="shots">${a.shots.map(s=>`<img src="${e(s)}" alt="لقطة شاشة" loading="lazy">`).join("")}</div>`:""}</div>`;
 }
 function route(){
  const m=location.hash.match(/^#\/app\/(.+)$/),a=m&&APPS.find(x=>x.id==decodeURIComponent(m[1]));
