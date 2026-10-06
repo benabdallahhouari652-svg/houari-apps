@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Discipline DZ | منصة الانضباط الرياضي 🟨</title>
-<meta name="description" content="منصة متكاملة لتتبع الانضباط، البطاقات الصفراء والحمراء، وحساب عقوبات الإيقاف تلقائياً (4 صفراء = إيقاف 2 مقابلات رسمية).">
+<title>Discipline DZ | منصة الانضباط الرياضي والعقوبات 🟨</title>
+<meta name="description" content="منصة متابعة البطاقات الصفراء والحمراء وعقوبات الإيقاف في المباريات الرسمية (بطولة وكأس) للنادي من تطوير المربي بن عبدالله الهواري.">
 <meta name="theme-color" content="#0f5b3a">
 
 <link rel="manifest" href="manifest.json">
@@ -58,150 +58,63 @@ body {
 a { color: inherit; text-decoration: none; }
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #0f5b3a;
-  color: #fff;
-  border-bottom: 3px solid var(--r);
-  padding: 10px 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  position: sticky; top: 0; z-index: 100;
+  background: #0f5b3a; color: #fff; border-bottom: 3px solid var(--r);
+  padding: 10px 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 .header-bar {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  max-width: 1000px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
 }
-.brand {
-  font-weight: 800;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.brand { font-weight: 800; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
 .btn-hdr {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
+  background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 12px; border-radius: 8px; font-family: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer;
 }
 
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px 16px;
-}
-
-.rule-banner {
-  background: #fef3c7;
-  color: #92400e;
-  border: 2px solid #f59e0b;
-  border-radius: 12px;
-  padding: 12px 18px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+main { max-width: 950px; margin: 0 auto; padding: 20px 16px; }
 
 .card {
-  background: var(--card);
-  border: 1px solid var(--ln);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
+  background: var(--card); border: 1px solid var(--ln); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow); margin-bottom: 20px;
 }
 
-h2 {
-  font-size: 1.2rem;
-  font-weight: 800;
-  margin-top: 0;
-  color: var(--g);
-  display: flex;
-  align-items: center;
-  gap: 8px;
+h2 { font-size: 1.3rem; font-weight: 800; margin-top: 0; color: var(--g); display: flex; align-items: center; gap: 8px; }
+
+.rule-box {
+  background: var(--g2); border-inline-start: 5px solid var(--g);
+  padding: 14px 18px; border-radius: 12px; margin-bottom: 20px; font-size: 0.92rem;
 }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-input, select {
-  width: 100%;
-  font-family: inherit;
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  border: 1px solid var(--ln);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--ink);
+.table-responsive { width: 100%; overflow-x: auto; margin-top: 16px; }
+table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.92rem; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--ln); }
+th { background: var(--g2); color: var(--g); font-weight: 800; }
+
+.badge-yellow { background: #fef08a; color: #854d0e; font-weight: bold; padding: 2px 8px; border-radius: 6px; }
+.badge-red { background: #fecdd3; color: #991b1b; font-weight: bold; padding: 2px 8px; border-radius: 6px; }
+.badge-suspended { background: var(--r); color: #fff; font-weight: bold; padding: 2px 8px; border-radius: 6px; }
+.badge-eligible { color: var(--g); font-weight: bold; }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px; }
+input[type="text"], input[type="number"], select {
+  width: 100%; font-family: inherit; font-size: 0.95rem; padding: 8px 12px;
+  border: 1px solid var(--ln); border-radius: 8px; background: var(--bg); color: var(--ink);
 }
 
 .btn-act {
-  background: var(--g);
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  background: var(--g); color: #fff; border: none; padding: 8px 16px;
+  border-radius: 8px; font-family: inherit; font-weight: 700; font-size: 0.88rem; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
 }
 .btn-act:hover { background: var(--g-light); }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-  font-size: 0.9rem;
-}
-th, td {
-  padding: 10px;
-  text-align: right;
-  border-bottom: 1px solid var(--ln);
-}
-th { background: var(--g2); color: var(--g); font-weight: 800; }
-
-.badge-yellow { background: #fef08a; color: #854d0e; padding: 2px 8px; border-radius: 99px; font-weight: bold; }
-.badge-red { background: #fecdd3; color: #991b1b; padding: 2px 8px; border-radius: 99px; font-weight: bold; }
-.badge-suspended { background: #ef4444; color: #fff; padding: 2px 8px; border-radius: 99px; font-weight: bold; }
-
 .toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: #1e293b;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 99px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  z-index: 1000;
-  opacity: 0;
-  transition: all 0.3s;
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: #1e293b; color: #fff; padding: 10px 20px; border-radius: 99px;
+  font-weight: 700; font-size: 0.9rem; z-index: 1000; opacity: 0; transition: all 0.3s;
 }
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 </style>
 </head>
 <body>
@@ -209,46 +122,52 @@ th { background: var(--g2); color: var(--g); font-weight: 800; }
 <header>
   <div class="header-bar">
     <div class="brand">
-      🟨 Discipline DZ | منصة الانضباط الرياضي
+      🟨 Discipline DZ | منصة الانضباط الرياضي 🇩🇿
     </div>
     <a class="btn-hdr" href="index.html">← متجر التطبيقات</a>
   </div>
 </header>
 
 <main>
-  <div class="rule-banner">
-    <span>⚖️ القانون الرسمي للانضباط:</span>
-    <span>تراكم 4 بطاقات صفراء = عقوبة الإيقاف لمباراتين رسميتين (2 مقابلات)!</span>
-  </div>
-
   <div class="card">
-    <h2>➕ إضافة لاعب أو عضو طاقم فني</h2>
-    <div class="form-grid">
-      <input type="text" id="playerName" aria-label="الاسم واللقب" placeholder="الاسم واللقب">
-      <input type="number" id="playerNum" aria-label="رقم القميص" placeholder="رقم القميص">
-      <select id="playerCat" aria-label="الفئة العمرية">
-        <option value="أكابر">أكابر (Senior)</option>
-        <option value="أقل من 20 سنة">أقل من 20 سنة (U20)</option>
-        <option value="أقل من 17 سنة">أقل من 17 سنة (U17)</option>
-        <option value="طاقم فني">طاقم فني / إداري</option>
-      </select>
+    <h2>📜 قانون الانضباط والعقوبات الرسمية</h2>
+    <div class="rule-box">
+      <b>📌 القانون الانضباطي المعتمد:</b><br>
+      • كل <b>4 بطاقات صفراء</b> في الموسم = <b>إيقاف مباراتين رسميتين (2 مقابلات)</b>.<br>
+      • <b>البطاقة الحمراء المباشرة</b> = <b>إيقاف مباراة واحدة رسمية (1 مباراة)</b>.<br>
+      • تُنفَّذ العقوبات حصرياً في <b>المباريات الرسمية فقط (بطولة وكأس)</b>.<br>
+      • <b>عند استنفاد مباريات الإيقاف الرسمية ويصبح عدد المباريات المتبقية = 0، تُسقَط وتُلغى العقوبة فوراً وتُستعاد أصل جاهزية المشاركة!</b>
     </div>
-    <button class="btn-act" id="btnAddPlayer">➕ إضافة إلى السجل</button>
+
+    <h3>➕ إضافة لاعب/عضو طاقم للسجل</h3>
+    <div class="form-grid">
+      <input type="text" id="playerName" aria-label="اسم اللاعب أو العضو" placeholder="اسم اللاعب أو العضو">
+      <input type="number" id="playerNum" aria-label="رقم اللاعب" placeholder="الرقم (#)">
+      <select id="playerCat" aria-label="الفئة السنية">
+        <option value="أكابر">أكابر (Seniors)</option>
+        <option value="U19">U19</option>
+        <option value="U17">U17</option>
+        <option value="U15">U15</option>
+        <option value="طاقم فني">طاقم فني/طبي</option>
+      </select>
+      <button class="btn-act" id="btnAddPlayer">إضافة لسجل الانضباط</button>
+    </div>
   </div>
 
   <div class="card">
-    <h2>📋 سجل الانضباط والعقوبات الحالية</h2>
-    <div style="overflow-x:auto;">
+    <h2>📋 سجل الإنذارات والإيقافات الرسمية</h2>
+    <div class="table-responsive">
       <table>
         <thead>
           <tr>
-            <th>اللاعب / العضو</th>
+            <th>الاسم</th>
             <th>الرقم</th>
             <th>الفئة</th>
-            <th>🟨 الصفراء</th>
-            <th>🟥 الحمراء</th>
-            <th>حالة العقوبة الإدارية</th>
-            <th>إجراءات</th>
+            <th>الصفراء 🟨</th>
+            <th>الحمراء 🟥</th>
+            <th>مباريات الإيقاف الرسمية المتبقية</th>
+            <th>وضعية المشاركة</th>
+            <th>الإجراءات</th>
           </tr>
         </thead>
         <tbody id="playersTableBody"></tbody>
@@ -260,16 +179,11 @@ th { background: var(--g2); color: var(--g); font-weight: 800; }
 <div class="toast" id="toast"></div>
 
 <script>
-let players = JSON.parse(localStorage.getItem("discipline_players") || "[]");
-
-if (!players.length) {
-  players = [
-    { id: 1, name: "رياض محرز", num: 7, cat: "أكابر", yellow: 3, red: 0 },
-    { id: 2, name: "إسماعيل بن ناصر", num: 4, cat: "أكابر", yellow: 4, red: 0 },
-    { id: 3, name: "رامي بن سبعيني", num: 21, cat: "أكابر", yellow: 1, red: 1 }
-  ];
-  savePlayers();
-}
+let players = JSON.parse(localStorage.getItem("discipline_players")) || [
+  { id: 1, name: "محمد أمين", num: 10, cat: "أكابر", yellow: 3, red: 0, suspensionMatches: 0 },
+  { id: 2, name: "رياض محرز", num: 7, cat: "أكابر", yellow: 4, red: 0, suspensionMatches: 2 },
+  { id: 3, name: "سفيان بن دبكة", num: 8, cat: "أكابر", yellow: 1, red: 1, suspensionMatches: 1 }
+];
 
 function showToast(msg) {
   const t = document.getElementById("toast");
@@ -286,11 +200,12 @@ function savePlayers() {
 function renderPlayers() {
   const tbody = document.getElementById("playersTableBody");
   tbody.innerHTML = players.map(p => {
-    let statusBadge = `<span style="color:var(--g); font-weight:bold;">✓ مؤهل للمشاركة</span>`;
-    if (p.yellow >= 4) {
-      statusBadge = `<span class="badge-suspended">⚠️ موقوف 2 مقابلات (تراكم 4 صفراء)</span>`;
-    } else if (p.red > 0) {
-      statusBadge = `<span class="badge-suspended">⛔ موقوف (بطاقة حمراء)</span>`;
+    let autoSuspension = (Math.floor(p.yellow / 4) * 2) + p.red;
+    let currentSuspension = (p.suspensionMatches !== undefined) ? p.suspensionMatches : autoSuspension;
+
+    let statusBadge = `<span class="badge-eligible">✓ مؤهل للمشاركة</span>`;
+    if (currentSuspension > 0) {
+      statusBadge = `<span class="badge-suspended">⛔ موقوف (${currentSuspension} مقابلات رسمية)</span>`;
     }
 
     return `
@@ -300,11 +215,13 @@ function renderPlayers() {
         <td>${p.cat}</td>
         <td><span class="badge-yellow">${p.yellow} 🟨</span></td>
         <td><span class="badge-red">${p.red} 🟥</span></td>
+        <td style="font-weight:bold; font-size:1.1rem; text-align:center; color:${currentSuspension > 0 ? 'var(--r)' : 'var(--g)'};">${currentSuspension}</td>
         <td>${statusBadge}</td>
         <td>
-          <button class="btn-act" style="padding:2px 8px; font-size:0.75rem;" onclick="addCard(${p.id}, 'yellow')">+🟨</button>
-          <button class="btn-act" style="padding:2px 8px; font-size:0.75rem; background:var(--r);" onclick="addCard(${p.id}, 'red')">+🟥</button>
-          <button class="btn-act" style="padding:2px 8px; font-size:0.75rem; background:var(--mut);" onclick="resetCards(${p.id})">تصفير</button>
+          <button class="btn-act" style="padding:2px 6px; font-size:0.75rem;" onclick="addCard(${p.id}, 'yellow')">+🟨</button>
+          <button class="btn-act" style="padding:2px 6px; font-size:0.75rem; background:var(--r);" onclick="addCard(${p.id}, 'red')">+🟥</button>
+          ${currentSuspension > 0 ? `<button class="btn-act" style="padding:2px 6px; font-size:0.75rem; background:var(--gold); color:#000;" onclick="fulfillMatch(${p.id})">⚽ -1 مباراة رسمية</button>` : ''}
+          <button class="btn-act" style="padding:2px 6px; font-size:0.75rem; background:var(--mut);" onclick="resetCards(${p.id})">تصفير</button>
         </td>
       </tr>
     `;
@@ -317,7 +234,7 @@ document.getElementById("btnAddPlayer").onclick = () => {
   const cat = document.getElementById("playerCat").value;
 
   if (!name) {
-    showToast("يرجى أدخل اسم اللاعب");
+    showToast("يرجى إدخال اسم اللاعب");
     return;
   }
 
@@ -327,7 +244,8 @@ document.getElementById("btnAddPlayer").onclick = () => {
     num: num,
     cat: cat,
     yellow: 0,
-    red: 0
+    red: 0,
+    suspensionMatches: 0
   });
 
   savePlayers();
@@ -339,16 +257,32 @@ document.getElementById("btnAddPlayer").onclick = () => {
 function addCard(id, type) {
   const p = players.find(x => x.id === id);
   if (p) {
+    if (p.suspensionMatches === undefined) p.suspensionMatches = 0;
     if (type === 'yellow') {
       p.yellow++;
-      if (p.yellow === 4) {
-        showToast(`⚠️ تنبيه: ${p.name} تراكمت لديه 4 بطاقات صفراء = عقوبة إيقاف مباراتين (2 مقابلات)!`);
+      if (p.yellow % 4 === 0) {
+        p.suspensionMatches += 2;
+        showToast(`⚠️ تنبيه: ${p.name} تراكمت لديه 4 بطاقات صفراء = إيقاف مباراتين رسميتين (2 مقابلات)!`);
       } else {
         showToast(`تم إضافة بطاقة صفراء لـ ${p.name}`);
       }
     } else if (type === 'red') {
       p.red++;
-      showToast(`⛔ بطاقة حمراء لـ ${p.name} - إيقاف مباراتين تلقائي`);
+      p.suspensionMatches += 1;
+      showToast(`⛔ بطاقة حمراء لـ ${p.name} = إيقاف مباراة رسمية واحدة تلقائي`);
+    }
+    savePlayers();
+  }
+}
+
+function fulfillMatch(id) {
+  const p = players.find(x => x.id === id);
+  if (p && p.suspensionMatches > 0) {
+    p.suspensionMatches -= 1;
+    if (p.suspensionMatches === 0) {
+      showToast(`✅ استنفاد العقوبة! عدد المباريات المتبقية = 0، تم إلغاء العقوبة وأصبح ${p.name} مؤهلاً للمشاركة!`);
+    } else {
+      showToast(`تم خصم مباراة رسمية واحدة. المتبقي لـ ${p.name}: ${p.suspensionMatches} مباراة`);
     }
     savePlayers();
   }
@@ -359,8 +293,9 @@ function resetCards(id) {
   if (p) {
     p.yellow = 0;
     p.red = 0;
+    p.suspensionMatches = 0;
     savePlayers();
-    showToast(`تم تصفير سجل السلوك لـ ${p.name}`);
+    showToast(`تم تصفير سجل الإنذارات وإلغاء العقوبة لـ ${p.name}`);
   }
 }
 
